@@ -1,0 +1,10 @@
+.center {
+    left: 0;
+    right: 0;
+    margin: auto;
+    justify-content: center;
+}
+
+.disabled {
+    background-color: #838080;
+}
