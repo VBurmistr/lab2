@@ -1,4 +1,5 @@
 nc\apps\connectionmanager\ConnectionManagerJNDI.class
+nc\apps\dto\AuthorAndTitle.class
 nc\apps\restcontrollers\LanguageRestController.class
 nc\apps\services\interfaces\BookBaseModelService.class
 nc\apps\dto\ErrorObject.class
@@ -41,6 +42,8 @@ nc\apps\connectionmanager\interfaces\ConnectionManager.class
 nc\apps\entities\Publisher.class
 nc\apps\services\BookBaseModelServiceImpl.class
 nc\apps\MvcWebApplicationInitializer.class
+nc\apps\config\AppConfig$devProps.class
+nc\apps\config\AppConfig$dockerProps.class
 nc\apps\dao\interfaces\LanguageDAO.class
 nc\apps\services\interfaces\AuthorService.class
 nc\apps\entities\Book.class

@@ -19,6 +19,7 @@ C:\Users\Home-PC\IdeaProjects\SecondLabSpringFromMaven\src\main\java\nc\apps\ser
 C:\Users\Home-PC\IdeaProjects\SecondLabSpringFromMaven\src\main\java\nc\apps\services\LanguageServiceImpl.java
 C:\Users\Home-PC\IdeaProjects\SecondLabSpringFromMaven\src\main\java\nc\apps\dto\ErrorObject.java
 C:\Users\Home-PC\IdeaProjects\SecondLabSpringFromMaven\src\main\java\nc\apps\services\AuthorServiceImpl.java
+C:\Users\Home-PC\IdeaProjects\SecondLabSpringFromMaven\src\main\java\nc\apps\dto\AuthorAndTitle.java
 C:\Users\Home-PC\IdeaProjects\SecondLabSpringFromMaven\src\main\java\nc\apps\restcontrollers\PublisherRestController.java
 C:\Users\Home-PC\IdeaProjects\SecondLabSpringFromMaven\src\main\java\nc\apps\services\interfaces\AuthorService.java
 C:\Users\Home-PC\IdeaProjects\SecondLabSpringFromMaven\src\main\java\nc\apps\config\AppConfig.java

@@ -6,20 +6,17 @@ import nc.apps.services.interfaces.LanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/language/")
 public class LanguageRestController {
-    LanguageService languageService;
+    private final LanguageService languageService;
 
     @Autowired
-    public void setLanguageService(LanguageService languageService) {
+    public LanguageRestController(LanguageService languageService) {
         this.languageService = languageService;
     }
 
@@ -32,7 +29,7 @@ public class LanguageRestController {
         return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @PostMapping("/getall/")
+    @GetMapping("/getall/")
     public ResponseEntity<List<Language>> getAllLanguages() throws ServiceException {
         List<Language> languages = languageService.getAll();
         if(languages!=null){

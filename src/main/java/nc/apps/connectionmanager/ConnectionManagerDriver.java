@@ -3,12 +3,13 @@ package nc.apps.connectionmanager;
 import nc.apps.connectionmanager.interfaces.ConnectionManager;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
 
 public class ConnectionManagerDriver implements ConnectionManager {
     private final String username;

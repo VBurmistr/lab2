@@ -19,6 +19,7 @@
     <a class="btn btn-primary" href="<%=request.getContextPath()%>/addlanguage">Add language</a>
     <a class="btn btn-primary" href="<%=request.getContextPath()%>/addcategory">Add category</a>
     <a class="btn btn-primary" href="<%=request.getContextPath()%>/addpublisher">Add publisher</a>
+    <a class="btn btn-primary" href="<%=request.getContextPath()%>/smartadder">Book Smart Adder</a>
     <a class="btn btn-primary" href="<%=request.getContextPath()%>/logout">Logout</a>
 </div>
 </body>

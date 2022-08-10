@@ -11,10 +11,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 @Configuration
 @EnableWebMvc
@@ -22,6 +19,21 @@ import java.sql.SQLException;
 @ComponentScan(value = "nc.apps")
 @PropertySource("classpath:application.properties")
 public class AppConfig implements WebMvcConfigurer {
+
+    @Configuration
+    @Profile("dev")
+    @PropertySource("classpath:smart-adder-dev.properties")
+    static class devProps
+    {
+    }
+
+    @Configuration
+    @Profile("docker")
+    @PropertySource("classpath:smart-adder-docker.properties")
+    static class dockerProps
+    {
+    }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
@@ -39,7 +51,23 @@ public class AppConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public DataSource getDataSource(@Value("${datasource.driver}") String driver,
+    @Profile("docker")
+    public DataSource getDataSourceDocker(@Value("${datasource.driver}") String driver,
+                                    @Value("${datasource.url_docker}") String url,
+                                    @Value("${datasource.user}") String username,
+                                    @Value("${datasource.password}") String password) {
+        HikariDataSource ds = new HikariDataSource();
+        ds.setMaximumPoolSize(20);
+        ds.setDriverClassName(driver);
+        ds.setJdbcUrl(url);
+        ds.setUsername(username);
+        ds.setPassword(password);
+        return ds;
+    }
+
+    @Bean
+    @Profile("dev")
+    public DataSource getDataSourceDevelop(@Value("${datasource.driver}") String driver,
                                     @Value("${datasource.url}") String url,
                                     @Value("${datasource.user}") String username,
                                     @Value("${datasource.password}") String password) {

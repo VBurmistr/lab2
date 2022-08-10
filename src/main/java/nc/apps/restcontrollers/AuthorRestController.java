@@ -13,15 +13,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/author/")
 public class AuthorRestController {
-    AuthorService authorService;
+    private final AuthorService authorService;
 
     @Autowired
-    public void setAuthorService(AuthorService authorService) {
+    public AuthorRestController(AuthorService authorService) {
         this.authorService = authorService;
     }
 
-
-    @RequestMapping(value = "/add/")
+    @PostMapping(value = "/add/")
     public ResponseEntity addAuthor(@RequestBody Author author) throws ServiceException {
         boolean result = authorService.save(author);
         if(result){
@@ -30,7 +29,7 @@ public class AuthorRestController {
         return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @PostMapping(value ="/getall/")
+    @GetMapping(value ="/getall/")
     public ResponseEntity<List<Author>> getAllAuthors() throws ServiceException {
         List<Author> authors = authorService.getAll();
         if(authors!=null){

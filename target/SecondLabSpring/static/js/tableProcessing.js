@@ -39,17 +39,31 @@ function tablePaginationRerender(totalpages, currentpage) {
 }
 
 function fillTableOnPage(page) {
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", getContextPath()+"/book/getall/", true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
     let form = document.querySelector('.searchBox');
-    let rawObj = {};
-    if (form !== undefined || form !== null) {
-        let formData = new FormData(form);
-        rawObj = Object.fromEntries(formData);
+    const data = new URLSearchParams();
+    for (const pair of new FormData(form)) {
+        data.append(pair[0], pair[1]);
     }
-    rawObj.page = page;
-    xhr.send(JSON.stringify(rawObj));
+    data.set('page',page);
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", getContextPath()+"/book/getall/?"+data, true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+
+
+    //
+    // let rawObj = {};
+    // if (form !== undefined || form !== null) {
+    //     let formData = new FormData(form);
+    //     rawObj = Object.fromEntries(formData);
+    // }
+    // rawObj.page = page;
+
+
+
+    //xhr.send(JSON.stringify(rawObj));
+
+    xhr.send();
 
     xhr.onload = function () {
         let data = JSON.parse(this.responseText);

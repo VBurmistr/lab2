@@ -40,6 +40,8 @@ public class MvcWebApplicationInitializer extends
 
         ServletRegistration.Dynamic dispatcher = container
                 .addServlet("dispatcher", dispatcherServlet);
+        container.setInitParameter(
+                "spring.profiles.active", System.getenv("profile"));
         dispatcher.addMapping("/");
     }
 }

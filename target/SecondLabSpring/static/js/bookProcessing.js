@@ -37,7 +37,7 @@ function initializeAllSelectors() {
 
 function initializeSelector(link, selector) {
     let xhr = new XMLHttpRequest();
-    xhr.open('POST', link)
+    xhr.open('GET', link)
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();
     xhr.onload = function () {
