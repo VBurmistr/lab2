@@ -3,6 +3,7 @@ package nc.apps.services;
 import nc.apps.dao.exception.DAOException;
 import nc.apps.dao.interfaces.BookDAO;
 import nc.apps.entities.Book;
+import nc.apps.services.daoServices.BookServiceImpl;
 import nc.apps.services.exceptions.ServiceException;
 import nc.apps.services.interfaces.BookService;
 import org.junit.jupiter.api.BeforeAll;
@@ -27,12 +28,12 @@ class BookServiceImplTest {
         bookService = new BookServiceImpl(bookDAO);
 
         Book book = new Book();
-        book.setId(1L);
+        book.setId(1);
 
         Mockito.doReturn(book)
                 .doThrow(new DAOException("Nothing with that id"))
                 .when(bookDAO)
-                .getById(1L);
+                .getById(1);
 
         Mockito.doNothing()
                 .doThrow(new DAOException("Nothing with that id"))
@@ -42,7 +43,7 @@ class BookServiceImplTest {
         Mockito.doNothing()
                 .doThrow(new DAOException("Nothing with that id"))
                 .when(bookDAO)
-                .remove(1L);
+                .remove(1);
 
         Mockito.doNothing()
                 .doThrow(new DAOException("Nothing with that id"))
@@ -57,10 +58,10 @@ class BookServiceImplTest {
 
         Book bookActual= bookService.getBookById(1);
         Book bookExpected = new Book();
-        bookExpected.setId(1L);
+        bookExpected.setId(1);
         assertEquals(bookActual, bookExpected);
 
-        bookActual = bookService.getBookById(1L);
+        bookActual = bookService.getBookById(1);
         bookExpected = null;
         assertEquals(bookActual, bookExpected);
     }
@@ -68,22 +69,22 @@ class BookServiceImplTest {
     @Test
     void updateBook() throws ServiceException {
         Book book = new Book();
-        book.setId(1L);
+        book.setId(1);
 
-        boolean result = bookService.updateBook(book,1L);
+        boolean result = bookService.updateBook(book,1);
         assertTrue(result);
 
-        boolean resultEx = bookService.updateBook(book,5L);
+        boolean resultEx = bookService.updateBook(book,5);
         assertFalse(resultEx);
     }
 
     @Test
     void removeBook() throws ServiceException {
 
-        boolean result = bookService.removeBook(1L);
+        boolean result = bookService.removeBook(1);
         assertTrue(result);
 
-        boolean resultEx = bookService.removeBook(1L);
+        boolean resultEx = bookService.removeBook(1);
         assertFalse(resultEx);
     }
 

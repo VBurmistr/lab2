@@ -35,7 +35,7 @@ public class BookBaseModelDAOImpl implements BookBaseModelDAO {
             PreparedStatement statement = con.prepareStatement(SQL_GET_ALL)){
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next()){
-                bookBaseModels.add(new BookBaseModel(resultSet.getLong("id"),
+                bookBaseModels.add(new BookBaseModel(resultSet.getInt("id"),
                         resultSet.getString("title")));
             }
         } catch (SQLException e) {

@@ -51,18 +51,6 @@ function fillTableOnPage(page) {
 
 
 
-    //
-    // let rawObj = {};
-    // if (form !== undefined || form !== null) {
-    //     let formData = new FormData(form);
-    //     rawObj = Object.fromEntries(formData);
-    // }
-    // rawObj.page = page;
-
-
-
-    //xhr.send(JSON.stringify(rawObj));
-
     xhr.send();
 
     xhr.onload = function () {
@@ -82,8 +70,8 @@ function fillTableOnPage(page) {
                 createLink(
                     false,
                     'link-primary',
-                    data.books[i].prequel.title == null ? '' : data.books[i].prequel.title,
-                    getContextPath()+'/editbook/' + data.books[i].prequel.id
+                    (data.books[i].prequel===null || data.books[i].prequel.title === null) ? '' : data.books[i].prequel.title,
+                    getContextPath()+'/editbook/' + (data.books[i].prequel===null || data.books[i].prequel.title === null) ? '' : data.books[i].prequel.id
             ));
             row.insertCell(++cellNum).appendChild(
                 createLink(

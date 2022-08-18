@@ -31,7 +31,7 @@ public class BookRestController {
     }
 
     @PostMapping(value = "/update/{id}")
-    public ResponseEntity updateBook(@RequestBody Book book, @PathVariable long id) throws ServiceException {
+    public ResponseEntity updateBook(@RequestBody Book book, @PathVariable int id) throws ServiceException {
         boolean result = bookService.updateBook(book, id);
         if (result) {
             return new ResponseEntity(HttpStatus.OK);
@@ -61,6 +61,7 @@ public class BookRestController {
 
     @PostMapping(value = "/add/")
     public ResponseEntity addBook(@RequestBody Book book) throws ServiceException {
+        System.out.println(book+"HERE");
         boolean result = bookService.addBook(book);
         if (result) {
             return new ResponseEntity(HttpStatus.OK);

@@ -17,7 +17,6 @@ import java.sql.SQLException;
 import java.util.stream.Collectors;
 
 @Slf4j
-@Component
 public class DBInitializer {
     Resource resourceFile;
     DataSource dataSource;

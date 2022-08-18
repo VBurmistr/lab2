@@ -6,9 +6,9 @@ import nc.apps.services.exceptions.ServiceException;
 import nc.apps.entities.Book;
 
 public interface BookService {
-    Book getBookById(long id) throws ServiceException;
-    boolean updateBook(Book book,long id) throws ServiceException;
-    boolean removeBook(long id) throws ServiceException;
+    Book getBookById(int id) throws ServiceException;
+    boolean updateBook(Book book,int id) throws ServiceException;
+    boolean removeBook(int id) throws ServiceException;
     boolean addBook(Book book) throws ServiceException;
     BookTable getAllBooksOnPage(SearchFiltersFromForm searchFiltersFromForm) throws ServiceException;
 }

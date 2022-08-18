@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 @Slf4j
 @Repository
 public class PublisherDAOImpl implements PublisherDAO {
@@ -28,34 +29,36 @@ public class PublisherDAOImpl implements PublisherDAO {
     }
 
     @Override
-    public List<Publisher> getAll() throws DAOException{
+    public List<Publisher> getAll() throws DAOException {
         List<Publisher> publishers = new ArrayList<>();
-        log.info("Get all publishers query:"+SQL_GET_ALL);
-        try(Connection con = dataSource.getConnection();
-            PreparedStatement statement = con.prepareStatement(SQL_GET_ALL)){
+        log.info("Get all publishers query:" + SQL_GET_ALL);
+        try (Connection con = dataSource.getConnection();
+             PreparedStatement statement = con.prepareStatement(SQL_GET_ALL)) {
             ResultSet resultSet = statement.executeQuery();
-            while(resultSet.next()){
-                publishers.add(new Publisher(resultSet.getLong("id"),
-                        resultSet.getString("publisher_name")));
+            while (resultSet.next()) {
+                publishers.add(Publisher.builder()
+                        .id(resultSet.getInt("id"))
+                        .publisherName(resultSet.getString("publisher_name"))
+                        .build());
             }
         } catch (SQLException e) {
-            throw new DAOException("Error while getting publisher's.",e);
+            throw new DAOException("Error while getting publisher's.", e);
         }
         return publishers;
     }
 
     @Override
-    public void save(Publisher publisher) throws DAOException{
-        log.info("Add new publisher query:"+SQL_GET_ALL);
-        try(Connection con = dataSource.getConnection();
-            PreparedStatement statement = con.prepareStatement(SQL_ADD_NEW)){
-            statement.setString(1,publisher.getPublisherName());
+    public void save(Publisher publisher) throws DAOException {
+        log.info("Add new publisher query:" + SQL_GET_ALL);
+        try (Connection con = dataSource.getConnection();
+             PreparedStatement statement = con.prepareStatement(SQL_ADD_NEW)) {
+            statement.setString(1, publisher.getPublisherName());
             int res = statement.executeUpdate();
             if (res == 0) {
-                throw new DAOException("Cant add publisher for some reason, publisher:"+publisher);
+                throw new DAOException("Cant add publisher for some reason, publisher:" + publisher);
             }
         } catch (SQLException e) {
-            throw new DAOException("Error while saving publisher:"+publisher,e);
+            throw new DAOException("Error while saving publisher:" + publisher, e);
         }
     }
 }
