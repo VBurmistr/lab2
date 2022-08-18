@@ -1,10 +1,13 @@
 package nc.apps.controllers;
 
 import lombok.extern.slf4j.Slf4j;
+import nc.apps.propertyholder.SmartAdderPropertyHolder;
 import nc.apps.services.exceptions.ServiceException;
 import nc.apps.services.interfaces.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,26 +15,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.naming.Context;
 import java.security.Principal;
 
 @Slf4j
 @Controller
 public class MainViewController {
-   private final BookService bookService;
-   private String smartAdderDomain;
-   private String smartAdderPort;
+    ApplicationContext applicationContext;
 
     @Autowired
-    public MainViewController(BookService bookService) {
+    public void setApplicationContext(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
+
+    private final BookService bookService;
+   private final SmartAdderPropertyHolder propertyHolder;
+
+    @Autowired
+    public MainViewController(BookService bookService,
+                              SmartAdderPropertyHolder propertyHolder) {
         this.bookService = bookService;
-    }
-    @Autowired
-    public void setSmartAdderDomain(@Value("${smartadder.domain}") String smartAdderDomain) {
-        this.smartAdderDomain = smartAdderDomain;
-    }
-    @Autowired
-    public void setSmartAdderPort(@Value("${smartadder.port}") String smartAdderPort) {
-        this.smartAdderPort = smartAdderPort;
+        this.propertyHolder = propertyHolder;
     }
 
     @GetMapping(path = "/searchbooks")
@@ -75,8 +79,7 @@ public class MainViewController {
     @GetMapping(path = "/smartadder")
     public ModelAndView addBookSmart(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("smartAdderDomain",smartAdderDomain);
-        modelAndView.addObject("smartAdderPort",smartAdderPort);
+        modelAndView.addObject("smartAdderProperty",propertyHolder);
         modelAndView.setViewName("bookSmartAdder");
         return modelAndView;
     }

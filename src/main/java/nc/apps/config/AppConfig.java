@@ -1,8 +1,10 @@
 package nc.apps.config;
 
 import com.zaxxer.hikari.HikariDataSource;
+import lombok.extern.slf4j.Slf4j;
 import nc.apps.connectionmanager.ConnectionManagerJNDI;
 import nc.apps.connectionmanager.interfaces.ConnectionManager;
+import nc.apps.propertyholder.SmartAdderPropertyHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
@@ -18,20 +20,24 @@ import javax.sql.DataSource;
 @EnableAspectJAutoProxy
 @ComponentScan(value = "nc.apps")
 @PropertySource("classpath:application.properties")
+@Slf4j
 public class AppConfig implements WebMvcConfigurer {
 
-    @Configuration
-    @Profile("dev")
-    @PropertySource("classpath:smart-adder-dev.properties")
-    static class devProps
-    {
+    @Bean
+    @Profile({"dev","default"})
+    @Primary
+    SmartAdderPropertyHolder devSmartAdderPropertyHolder(@Value("${smartadder.dev.port}") String port,
+                                                            @Value("${smartadder.domain}") String domain){
+        log.info("Initialized devSmartAdderPropertyHolder bean.");
+        return new SmartAdderPropertyHolder(domain,port);
     }
 
-    @Configuration
+    @Bean
     @Profile("docker")
-    @PropertySource("classpath:smart-adder-docker.properties")
-    static class dockerProps
-    {
+    SmartAdderPropertyHolder dockerSmartAdderPropertyHolder(@Value("${smartadder.docker.port}") String port,
+                                                               @Value("${smartadder.domain}") String domain){
+        log.info("Initialized dockerSmartAdderPropertyHolder bean.");
+        return new SmartAdderPropertyHolder(domain,port);
     }
 
     @Override
@@ -52,10 +58,11 @@ public class AppConfig implements WebMvcConfigurer {
 
     @Bean
     @Profile("docker")
-    public DataSource getDataSourceDocker(@Value("${datasource.driver}") String driver,
+    public DataSource dataSourceDocker(@Value("${datasource.driver}") String driver,
                                     @Value("${datasource.url_docker}") String url,
                                     @Value("${datasource.user}") String username,
                                     @Value("${datasource.password}") String password) {
+        log.info("Initialized dataSourceDocker bean.");
         HikariDataSource ds = new HikariDataSource();
         ds.setMaximumPoolSize(20);
         ds.setDriverClassName(driver);
@@ -67,10 +74,11 @@ public class AppConfig implements WebMvcConfigurer {
 
     @Bean
     @Profile("dev")
-    public DataSource getDataSourceDevelop(@Value("${datasource.driver}") String driver,
+    public DataSource dataSourceDevelop(@Value("${datasource.driver}") String driver,
                                     @Value("${datasource.url}") String url,
                                     @Value("${datasource.user}") String username,
                                     @Value("${datasource.password}") String password) {
+        log.info("Initialized dataSourceDevelop bean.");
         HikariDataSource ds = new HikariDataSource();
         ds.setMaximumPoolSize(20);
         ds.setDriverClassName(driver);
