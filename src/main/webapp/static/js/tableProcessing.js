@@ -38,6 +38,10 @@ function tablePaginationRerender(totalpages, currentpage) {
 
 }
 
+
+
+
+
 function fillTableOnPage(page) {
     let form = document.querySelector('.searchBox');
     const data = new URLSearchParams();
@@ -49,10 +53,7 @@ function fillTableOnPage(page) {
     xhr.open("GET", getContextPath()+"/book/getall/?"+data, true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-
-
     xhr.send();
-
     xhr.onload = function () {
         let data = JSON.parse(this.responseText);
         tablePaginationRerender(data.totalPages, data.currentPage);
@@ -119,9 +120,8 @@ function clearTableBody() {
 
 function removeBookWithId(row, id) {
     let xhr = new XMLHttpRequest();
-    xhr.open('POST', getContextPath()+"/book/remove/")
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("id=" + id);
+    xhr.open('GET', getContextPath()+"/book/remove/"+id)
+    xhr.send();
     xhr.onload = function () {
         if (this.status === 200) {
             row.remove();

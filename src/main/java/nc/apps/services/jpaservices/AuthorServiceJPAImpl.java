@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
+@Primary
 public class AuthorServiceJPAImpl implements AuthorService {
 
     private final AuthorRepository authorRepository;

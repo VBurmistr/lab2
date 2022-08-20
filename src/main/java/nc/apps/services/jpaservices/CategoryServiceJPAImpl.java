@@ -15,6 +15,7 @@ import java.util.List;
 
 @Slf4j
 @Service
+@Primary
 public class CategoryServiceJPAImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
     public CategoryServiceJPAImpl(CategoryRepository categoryRepository) {

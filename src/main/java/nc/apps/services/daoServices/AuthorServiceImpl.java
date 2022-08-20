@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Slf4j
 @Service
-@Primary
 public class AuthorServiceImpl implements AuthorService {
     AuthorDAO authorDAO;
     @Autowired

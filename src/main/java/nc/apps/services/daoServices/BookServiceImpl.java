@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Slf4j
 @Service
-@Primary
 public class BookServiceImpl implements BookService {
     public static final int TABLE_ROW_LIMIT = 10;
     BookDAO bookDAO;

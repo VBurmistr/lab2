@@ -15,6 +15,7 @@ import java.util.List;
 
 @Slf4j
 @Service
+@Primary
 public class PublisherServiceJPAImpl implements PublisherService {
     private final PublisherRepository publisherRepository;
 

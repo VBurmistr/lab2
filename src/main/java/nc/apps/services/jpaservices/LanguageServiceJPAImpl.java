@@ -15,6 +15,7 @@ import java.util.List;
 
 @Slf4j
 @Service
+@Primary
 public class LanguageServiceJPAImpl implements LanguageService {
     private final LanguageRepository languageRepository;
 

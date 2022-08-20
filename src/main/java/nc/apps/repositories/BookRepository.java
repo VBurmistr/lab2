@@ -6,10 +6,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import javax.persistence.PreRemove;
+import javax.transaction.Transactional;
 import java.util.List;
-
 public interface BookRepository extends JpaRepository<Book,Integer> {
-    Boolean existsByTitleAndAuthorFirstNameAndAuthorLastName(String title,String authorFirstName,String authorLastName);
 
     @Query(value = "select id, title from lab3_book_table",nativeQuery = true)
     List<BookBaseModel> findAllBookBaseModels();

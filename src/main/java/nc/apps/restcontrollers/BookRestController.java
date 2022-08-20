@@ -1,9 +1,10 @@
 package nc.apps.restcontrollers;
 
-import nc.apps.dto.AuthorAndTitle;
+import nc.apps.dto.BookIDsDTO;
 import nc.apps.dto.BookTable;
 import nc.apps.dto.SearchFiltersFromForm;
 import nc.apps.entities.Book;
+import nc.apps.mappers.BookIdsDTOToBookDomain;
 import nc.apps.services.exceptions.ServiceException;
 import nc.apps.services.interfaces.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ public class BookRestController {
         this.bookService = bookService;
     }
 
-    @PostMapping(value = "/remove/")
-    public ResponseEntity removeBook(@RequestParam int id) throws ServiceException {
+    @GetMapping(value = "/remove/{id}")
+    public ResponseEntity removeBook(@PathVariable int id) throws ServiceException {
         boolean result = bookService.removeBook(id);
         if (result) {
             return new ResponseEntity(HttpStatus.OK);
@@ -31,8 +32,9 @@ public class BookRestController {
     }
 
     @PostMapping(value = "/update/{id}")
-    public ResponseEntity updateBook(@RequestBody Book book, @PathVariable int id) throws ServiceException {
-        boolean result = bookService.updateBook(book, id);
+    public ResponseEntity updateBook(@RequestBody BookIDsDTO bookIDsDTO, @PathVariable int id) throws ServiceException {
+        Book newBook = BookIdsDTOToBookDomain.map(bookIDsDTO);
+        boolean result = bookService.updateBook(newBook,id);
         if (result) {
             return new ResponseEntity(HttpStatus.OK);
         }
@@ -60,9 +62,9 @@ public class BookRestController {
     }
 
     @PostMapping(value = "/add/")
-    public ResponseEntity addBook(@RequestBody Book book) throws ServiceException {
-        System.out.println(book+"HERE");
-        boolean result = bookService.addBook(book);
+    public ResponseEntity addBook(@RequestBody BookIDsDTO bookIDsDTO) throws ServiceException {
+        Book newBook = BookIdsDTOToBookDomain.map(bookIDsDTO);
+        boolean result = bookService.addBook(newBook);
         if (result) {
             return new ResponseEntity(HttpStatus.OK);
         }

@@ -1,27 +1,21 @@
-function bookProcessing(form) {
-    let xhr = new XMLHttpRequest();
-    let formData = new FormData(form);
-    let rawObj = Object.fromEntries(formData);
-    let obj = {
-        title: rawObj.title,
-        author: {id: rawObj.author},
-        category: {id: rawObj.category},
-        language: {id: rawObj.language},
-        publisher: {id: rawObj.publisher},
-        prequel: {id: rawObj.prequel === "0" ? null : rawObj.prequel}
-    }
-    xhr.open('POST', form.getAttribute("action"))
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(JSON.stringify(obj));
-    xhr.onload = function () {
-        if (this.status === 200) {
+function bookProcessingNew(form){
+    const formData = new FormData(form);
+    const plainFormData = Object.fromEntries(formData.entries());
+    const formDataJsonString = JSON.stringify(plainFormData);
+    fetch(form.getAttribute("action"), {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: formDataJsonString
+    }).then(r => {
+        if (r.status === 200) {
             window.location.replace(getContextPath()+"/searchbooks");
         } else {
-            alert("Something wrong")
+            alert(r.text())
         }
-    }
+    });
 }
-
 
 window.addEventListener('load', function () {
     initializeAllSelectors();

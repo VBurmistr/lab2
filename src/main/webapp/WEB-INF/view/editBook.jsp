@@ -59,7 +59,7 @@
                 <option value="<c:out value="${book.prequel.id}"/>"><c:out value="${book.prequel.title}"/></option>
             </select>
         </div>
-        <input value="Save changes" type="button" onclick="bookProcessing(this.form)" class="w-100 btn btn-primary form-control">
+        <input value="Save changes" type="button" onclick="bookProcessingNew(this.form)" class="w-100 btn btn-primary form-control">
     </form>
 </div>
 </body>
