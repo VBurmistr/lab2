@@ -1,5 +1,8 @@
 package nc.apps.restcontrollers;
 
+import nc.apps.dto.ResponseObject;
+import nc.apps.dto.tabledtos.LanguageDTO;
+import nc.apps.entities.Category;
 import nc.apps.entities.Language;
 import nc.apps.services.exceptions.ServiceException;
 import nc.apps.services.interfaces.LanguageService;
@@ -21,21 +24,20 @@ public class LanguageRestController {
     }
 
     @PostMapping("/add/")
-    public ResponseEntity addLanguage(@RequestBody Language language) throws ServiceException {
-        boolean result = languageService.save(language);
-        if(result){
-            return new ResponseEntity(HttpStatus.OK);
-        }
-        return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity addLanguage(@RequestBody LanguageDTO language) throws ServiceException {
+        languageService.save(language);
+        ResponseObject obj = new ResponseObject();
+        obj.setSuccess(true);
+        return new ResponseEntity<>(obj,HttpStatus.OK);
     }
 
     @GetMapping("/getall/")
-    public ResponseEntity<List<Language>> getAllLanguages() throws ServiceException {
-        List<Language> languages = languageService.getAll();
-        if(languages!=null){
-            return new ResponseEntity<>(languages,HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<ResponseObject<List<LanguageDTO>>> getAllLanguages() throws ServiceException {
+        List<LanguageDTO> languages = languageService.getAll();
+        ResponseObject<List<LanguageDTO>> obj = new ResponseObject<>();
+        obj.setResponseBody(languages);
+        obj.setSuccess(true);
+        return new ResponseEntity<>(obj,HttpStatus.OK);
     }
 
 }

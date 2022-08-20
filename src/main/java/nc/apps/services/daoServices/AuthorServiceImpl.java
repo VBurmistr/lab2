@@ -3,6 +3,9 @@ package nc.apps.services.daoServices;
 import lombok.extern.slf4j.Slf4j;
 import nc.apps.dao.exception.DAOException;
 import nc.apps.dao.interfaces.AuthorDAO;
+import nc.apps.dto.tabledtos.AuthorDTO;
+import nc.apps.mappers.DTOToDomainMapper;
+import nc.apps.mappers.DomainToDTOMapper;
 import nc.apps.services.exceptions.ServiceException;
 import nc.apps.entities.Author;
 import nc.apps.services.interfaces.AuthorService;
@@ -13,25 +16,26 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Slf4j
 @Service
+@Primary
 public class AuthorServiceImpl implements AuthorService {
-    AuthorDAO authorDAO;
+    private final AuthorDAO authorDAO;
     @Autowired
     public AuthorServiceImpl(AuthorDAO authorDAO) {
         this.authorDAO = authorDAO;
     }
 
-    public boolean save(Author author) throws ServiceException {
+    public boolean save(AuthorDTO author) throws ServiceException {
         try {
-            authorDAO.save(author);
+            authorDAO.save(DTOToDomainMapper.mapAuthor(author));
             return true;
         }catch (DAOException e){
             throw new ServiceException(e);
         }
     }
 
-    public List<Author> getAll() throws ServiceException {
+    public List<AuthorDTO> getAll() throws ServiceException {
         try {
-            return authorDAO.getAll();
+            return DomainToDTOMapper.mapAuthors(authorDAO.getAll());
         }catch (DAOException e){
             throw new ServiceException(e);
         }

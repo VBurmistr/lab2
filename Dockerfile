@@ -4,5 +4,4 @@ COPY . /project
 WORKDIR /project
 RUN ./mvnw clean package
 RUN cp target/SecondLabSpring.war /usr/local/tomcat/webapps/SecondLabSpring.war
-#COPY target/SecondLabSpring.war /usr/local/tomcat/webapps/SecondLabSpring.war
 CMD ["/usr/local/tomcat/bin/startup.sh"]

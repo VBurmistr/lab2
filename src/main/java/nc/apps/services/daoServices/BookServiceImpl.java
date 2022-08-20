@@ -4,9 +4,13 @@ import lombok.extern.slf4j.Slf4j;
 import nc.apps.dao.exception.DAOException;
 import nc.apps.dao.interfaces.BookDAO;
 import nc.apps.dto.BookDBFilter;
-import nc.apps.dto.BookTable;
+import nc.apps.dto.BookIDsDTO;
+import nc.apps.dto.tabledtos.BookDTO;
+import nc.apps.dto.tabledtos.BookTable;
 import nc.apps.dto.SearchFiltersFromForm;
 import nc.apps.entities.Book;
+import nc.apps.mappers.DTOToDomainMapper;
+import nc.apps.mappers.DomainToDTOMapper;
 import nc.apps.mappers.SearchFilterToBookFilterMapping;
 import nc.apps.services.exceptions.ServiceException;
 import nc.apps.services.interfaces.BookService;
@@ -17,6 +21,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Slf4j
 @Service
+@Primary
 public class BookServiceImpl implements BookService {
     public static final int TABLE_ROW_LIMIT = 10;
     BookDAO bookDAO;
@@ -25,16 +30,17 @@ public class BookServiceImpl implements BookService {
         this.bookDAO = bookDAO;
     }
 
-    public Book getBookById(int id) throws ServiceException {
+    public BookDTO getBookById(int id) throws ServiceException {
         try {
-            return bookDAO.getById(id);
+            return DomainToDTOMapper.mapBook(bookDAO.getById(id));
         }catch (DAOException e){
             throw new ServiceException(e);
         }
     }
 
-    public boolean updateBook(Book book,int id) throws ServiceException {
+    public boolean updateBook(BookIDsDTO bookIDsDTO, int id) throws ServiceException {
         try {
+            Book book = DTOToDomainMapper.mapBook(bookIDsDTO);
             book.setId(id);
             bookDAO.update(book);
             return true;
@@ -51,8 +57,9 @@ public class BookServiceImpl implements BookService {
             throw new ServiceException(e);
         }
     }
-    public boolean addBook(Book book) throws ServiceException {
+    public boolean addBook(BookIDsDTO bookIDsDTO) throws ServiceException {
         try {
+            Book book = DTOToDomainMapper.mapBook(bookIDsDTO);
             bookDAO.save(book);
             return true;
         }catch (DAOException e){
@@ -65,9 +72,10 @@ public class BookServiceImpl implements BookService {
 
             BookDBFilter filter = SearchFilterToBookFilterMapping.map(searchFiltersFromForm,TABLE_ROW_LIMIT);
             List<Book> bookList = bookDAO.getAll(filter);
+            List<BookDTO> bookListDto = DomainToDTOMapper.mapBooks(bookList);
             int size = bookDAO.allBooksSize(filter);
             long totalPages =  (long) Math.ceil(size/(float)TABLE_ROW_LIMIT);
-            return new BookTable(bookList,totalPages, searchFiltersFromForm.getPage());
+            return new BookTable(bookListDto,totalPages, searchFiltersFromForm.getPage());
         }catch (DAOException e){
             throw new ServiceException(e);
         }

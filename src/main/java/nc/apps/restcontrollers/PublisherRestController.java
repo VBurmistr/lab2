@@ -1,5 +1,8 @@
 package nc.apps.restcontrollers;
 
+import nc.apps.dto.ResponseObject;
+import nc.apps.dto.tabledtos.PublisherDTO;
+import nc.apps.entities.Language;
 import nc.apps.entities.Publisher;
 import nc.apps.services.exceptions.ServiceException;
 import nc.apps.services.interfaces.PublisherService;
@@ -21,21 +24,20 @@ public class PublisherRestController {
     }
 
     @PostMapping("/add/")
-    public ResponseEntity addPublisher(@RequestBody Publisher publisher) throws ServiceException {
-        boolean result = publisherService.save(publisher);
-        if(result){
-            return new ResponseEntity(HttpStatus.OK);
-        }
-        return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity addPublisher(@RequestBody PublisherDTO publisher) throws ServiceException {
+        publisherService.save(publisher);
+        ResponseObject obj = new ResponseObject();
+        obj.setSuccess(true);
+        return new ResponseEntity<>(obj,HttpStatus.OK);
     }
 
     @GetMapping("/getall/")
-    public ResponseEntity<List<Publisher>> getAllPublishers() throws ServiceException {
-        List<Publisher> publishers = publisherService.getAll();
-        if(publishers!=null){
-            return new ResponseEntity<>(publishers,HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<ResponseObject<List<PublisherDTO>>> getAllPublishers() throws ServiceException {
+        List<PublisherDTO> publishers = publisherService.getAll();
+        ResponseObject<List<PublisherDTO>> obj = new ResponseObject<>();
+        obj.setResponseBody(publishers);
+        obj.setSuccess(true);
+        return new ResponseEntity<>(obj,HttpStatus.OK);
     }
 
 }

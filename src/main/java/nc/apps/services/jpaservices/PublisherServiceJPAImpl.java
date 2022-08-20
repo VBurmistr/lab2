@@ -3,7 +3,10 @@ package nc.apps.services.jpaservices;
 import lombok.extern.slf4j.Slf4j;
 import nc.apps.dao.exception.DAOException;
 import nc.apps.dao.interfaces.PublisherDAO;
+import nc.apps.dto.tabledtos.PublisherDTO;
 import nc.apps.entities.Publisher;
+import nc.apps.mappers.DTOToDomainMapper;
+import nc.apps.mappers.DomainToDTOMapper;
 import nc.apps.repositories.PublisherRepository;
 import nc.apps.services.exceptions.ServiceException;
 import nc.apps.services.interfaces.PublisherService;
@@ -15,7 +18,6 @@ import java.util.List;
 
 @Slf4j
 @Service
-@Primary
 public class PublisherServiceJPAImpl implements PublisherService {
     private final PublisherRepository publisherRepository;
 
@@ -23,18 +25,18 @@ public class PublisherServiceJPAImpl implements PublisherService {
         this.publisherRepository = publisherRepository;
     }
 
-    public boolean save(Publisher publisher) throws ServiceException {
+    public boolean save(PublisherDTO publisher) throws ServiceException {
         try {
-            publisherRepository.save(publisher);
+            publisherRepository.save(DTOToDomainMapper.mapPublisher(publisher));
             return true;
         }catch (Exception e){
             throw new ServiceException(e);
         }
     }
 
-    public List<Publisher> getAll() throws ServiceException {
+    public List<PublisherDTO> getAll() throws ServiceException {
         try {
-            return publisherRepository.findAll();
+            return DomainToDTOMapper.mapPublishers(publisherRepository.findAll());
         }catch (Exception e){
             throw new ServiceException(e);
         }

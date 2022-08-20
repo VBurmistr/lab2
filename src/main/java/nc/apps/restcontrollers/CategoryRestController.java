@@ -1,5 +1,8 @@
 package nc.apps.restcontrollers;
 
+import nc.apps.dto.ResponseObject;
+import nc.apps.dto.tabledtos.CategoryDTO;
+import nc.apps.entities.Author;
 import nc.apps.entities.Category;
 import nc.apps.services.exceptions.ServiceException;
 import nc.apps.services.interfaces.CategoryService;
@@ -21,20 +24,19 @@ public class CategoryRestController {
     }
 
     @PostMapping("/add/")
-    public ResponseEntity addCategory(@RequestBody Category category) throws ServiceException {
-        boolean result = categoryService.save(category);
-        if(result){
-            return new ResponseEntity(HttpStatus.OK);
-        }
-        return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity addCategory(@RequestBody CategoryDTO category) throws ServiceException {
+        categoryService.save(category);
+        ResponseObject obj = new ResponseObject();
+        obj.setSuccess(true);
+        return new ResponseEntity<>(obj,HttpStatus.OK);
     }
 
     @GetMapping("/getall/")
-    public ResponseEntity<List<Category>> getAllCategories() throws ServiceException {
-        List<Category> categories = categoryService.getAll();
-        if(categories!=null){
-            return new ResponseEntity<>(categories,HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<ResponseObject<List<CategoryDTO>>> getAllCategories() throws ServiceException {
+        List<CategoryDTO> categories = categoryService.getAll();
+        ResponseObject<List<CategoryDTO>> obj = new ResponseObject<>();
+        obj.setResponseBody(categories);
+        obj.setSuccess(true);
+        return new ResponseEntity<>(obj,HttpStatus.OK);
     }
 }

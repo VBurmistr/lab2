@@ -3,7 +3,10 @@ package nc.apps.services.jpaservices;
 import lombok.extern.slf4j.Slf4j;
 import nc.apps.dao.exception.DAOException;
 import nc.apps.dao.interfaces.BookBaseModelDAO;
+import nc.apps.dto.tabledtos.BookBaseModelDTO;
+import nc.apps.entities.Book;
 import nc.apps.entities.BookBaseModel;
+import nc.apps.mappers.DomainToDTOMapper;
 import nc.apps.repositories.BookBaseModelRepository;
 import nc.apps.repositories.BookRepository;
 import nc.apps.services.exceptions.ServiceException;
@@ -17,7 +20,6 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-@Primary
 public class BookBaseModelServiceJPAImpl implements BookBaseModelService {
     private final BookRepository bookRepository;
 
@@ -26,12 +28,13 @@ public class BookBaseModelServiceJPAImpl implements BookBaseModelService {
         this.bookRepository = bookRepository;
     }
 
-    public List<BookBaseModel> getAll() throws ServiceException {
+    public List<BookBaseModelDTO> getAll() throws ServiceException {
         try {
-            return bookRepository.findAll()
+              List<BookBaseModel> books =  bookRepository.findAll()
                     .stream()
                     .map(b->new BookBaseModel(b.getId(),b.getTitle()))
                     .collect(Collectors.toList());
+              return DomainToDTOMapper.mapBaseModels(books);
         } catch (Exception e) {
             e.printStackTrace();
             throw new ServiceException(e);

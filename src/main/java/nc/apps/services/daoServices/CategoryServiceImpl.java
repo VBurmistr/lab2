@@ -3,7 +3,10 @@ package nc.apps.services.daoServices;
 import lombok.extern.slf4j.Slf4j;
 import nc.apps.dao.exception.DAOException;
 import nc.apps.dao.interfaces.CategoryDAO;
+import nc.apps.dto.tabledtos.CategoryDTO;
 import nc.apps.entities.Category;
+import nc.apps.mappers.DTOToDomainMapper;
+import nc.apps.mappers.DomainToDTOMapper;
 import nc.apps.services.exceptions.ServiceException;
 import nc.apps.services.interfaces.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import java.util.List;
 
 @Slf4j
 @Service
+@Primary
 public class CategoryServiceImpl implements CategoryService {
     CategoryDAO categoryDAO;
     @Autowired
@@ -21,18 +25,18 @@ public class CategoryServiceImpl implements CategoryService {
         this.categoryDAO = categoryDAO;
     }
 
-    public boolean save(Category category) throws ServiceException {
+    public boolean save(CategoryDTO category) throws ServiceException {
         try {
-            categoryDAO.save(category);
+            categoryDAO.save(DTOToDomainMapper.mapCategory(category));
             return true;
         }catch (DAOException e){
             throw new ServiceException(e);
         }
     }
 
-    public List<Category> getAll() throws ServiceException {
+    public List<CategoryDTO> getAll() throws ServiceException {
         try {
-            return categoryDAO.getAll();
+            return DomainToDTOMapper.mapCategories(categoryDAO.getAll());
         }catch (DAOException e){
             throw new ServiceException(e);
         }
