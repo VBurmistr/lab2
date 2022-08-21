@@ -7,10 +7,16 @@ import java.util.Optional;
 
 @Getter
 public enum OrderingBy {
-    AUTHOR(1), LANGUAGE(2), TITLE(3), PUBLISHER(4), CATEGORY(5);
+    AUTHOR(1,"author.firstName"),
+    LANGUAGE(2,"language.languageName"),
+    TITLE(3,"title"),
+    PUBLISHER(4,"publisher.publisherName"),
+    CATEGORY(5,"category.categoryName");
     private final int value;
+    private final String jpaOrderingField;
 
-    OrderingBy(int value) {
+    OrderingBy(int value,String jpaOrderingField) {
+        this.jpaOrderingField = jpaOrderingField;
         this.value = value;
     }
 

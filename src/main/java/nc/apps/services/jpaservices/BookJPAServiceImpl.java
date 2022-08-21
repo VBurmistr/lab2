@@ -7,15 +7,15 @@ import nc.apps.dto.tabledtos.BookTable;
 import nc.apps.dto.SearchFiltersFromForm;
 import nc.apps.dto.tabledtos.BookDTO;
 import nc.apps.entities.Book;
-import nc.apps.mappers.DTOToDomainMapper;
-import nc.apps.mappers.DomainToDTOMapper;
-import nc.apps.mappers.SearchFilterToBookFilterMapping;
+import nc.apps.mappers.*;
 import nc.apps.repositories.BookRepository;
 import nc.apps.services.exceptions.ServiceException;
 import nc.apps.services.interfaces.BookService;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -24,6 +24,7 @@ import java.util.Optional;
 
 @Slf4j
 @Service
+@Primary
 public class BookJPAServiceImpl implements BookService {
     public static final int TABLE_ROW_LIMIT = 10;
     private final BookRepository bookRepository;
@@ -84,12 +85,14 @@ public class BookJPAServiceImpl implements BookService {
 
     public BookTable getAllBooksOnPage(SearchFiltersFromForm searchFiltersFromForm) throws ServiceException {
         try {
-            BookDBFilter filter = SearchFilterToBookFilterMapping.map(searchFiltersFromForm, TABLE_ROW_LIMIT);
-            List<Book> books = bookRepository.findAllBy(PageRequest.of(searchFiltersFromForm.getPage() - 1, 10, Sort.by("title")));
-            List<BookDTO> bookDTOs = DomainToDTOMapper.mapBooks(books);
-            long size = bookRepository.count();
-            long totalPages = (long) Math.ceil(size / (float) TABLE_ROW_LIMIT);
-            return new BookTable(bookDTOs, totalPages, searchFiltersFromForm.getPage());
+
+            Specification<Book> specs = SpringDataSpecificationMapper.mapSpecs(searchFiltersFromForm);
+            Sort sort = SpringDataSortMapping.map(searchFiltersFromForm);
+            Page<Book> books = bookRepository.findAll(specs,
+                    PageRequest.of(searchFiltersFromForm.getPage() - 1, 10, sort));
+
+            List<BookDTO> bookDTOs = DomainToDTOMapper.mapBookPage(books);
+            return new BookTable(bookDTOs, books.getTotalPages(), searchFiltersFromForm.getPage());
         } catch (Exception e) {
             throw new ServiceException(e);
         }

@@ -17,7 +17,6 @@ import java.util.List;
 
 @Slf4j
 @Service
-@Primary
 public class LanguageServiceImpl implements LanguageService {
     LanguageDAO languageDAO;
 

@@ -6,6 +6,7 @@ import nc.apps.dto.tabledtos.CategoryDTO;
 import nc.apps.dto.tabledtos.LanguageDTO;
 import nc.apps.dto.tabledtos.PublisherDTO;
 import nc.apps.entities.*;
+import org.springframework.data.jpa.domain.Specification;
 
 public class DTOToDomainMapper {
     public static Book mapBooks(BookIDsDTO bookIDsDTO) {
@@ -91,4 +92,5 @@ public class DTOToDomainMapper {
                 .publisherName(publisher.getPublisherName())
                 .build();
     }
+
 }

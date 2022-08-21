@@ -26,7 +26,7 @@ public class Author {
     private Integer id;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY,orphanRemoval = true)
     private List<Book> books;
 
     @Column(name="first_name")

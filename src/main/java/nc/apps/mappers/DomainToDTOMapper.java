@@ -2,12 +2,46 @@ package nc.apps.mappers;
 
 import nc.apps.dto.tabledtos.*;
 import nc.apps.entities.*;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class DomainToDTOMapper {
     public static List<BookDTO> mapBooks(List<Book> books) {
+        return books.stream().map(b -> {
+            BookDTO bookDTOs = BookDTO.builder()
+                    .id(b.getId())
+                    .title(b.getTitle())
+                    .language(LanguageDTO.builder()
+                            .languageName(b.getLanguage().getLanguageName())
+                            .id(b.getLanguage().getId())
+                            .build())
+                    .author(AuthorDTO.builder()
+                            .firstName(b.getAuthor().getFirstName())
+                            .lastName(b.getAuthor().getLastName())
+                            .id(b.getAuthor().getId())
+                            .build())
+                    .category(CategoryDTO.builder()
+                            .id(b.getCategory().getId())
+                            .categoryName(b.getCategory().getCategoryName())
+                            .build())
+                    .publisher(PublisherDTO.builder()
+                            .id(b.getPublisher().getId())
+                            .publisherName(b.getPublisher().getPublisherName())
+                            .build())
+                    .build();
+            if (b.getPrequel() != null) {
+                bookDTOs.setPrequel(BookBaseModelDTO.builder()
+                        .id(b.getPrequel().getId())
+                        .title(b.getPrequel().getTitle())
+                        .build());
+            }
+            return bookDTOs;
+        }).collect(Collectors.toList());
+    }
+
+    public static List<BookDTO> mapBookPage(Page<Book> books) {
         return books.stream().map(b -> {
             BookDTO bookDTOs = BookDTO.builder()
                     .id(b.getId())

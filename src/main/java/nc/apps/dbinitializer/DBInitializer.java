@@ -3,6 +3,7 @@ package nc.apps.dbinitializer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +18,7 @@ import java.sql.SQLException;
 import java.util.stream.Collectors;
 
 @Slf4j
+@Component
 public class DBInitializer {
     Resource resourceFile;
     DataSource dataSource;

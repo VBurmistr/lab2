@@ -26,7 +26,7 @@ public class Language {
     private Integer id;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "language", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "language", fetch = FetchType.LAZY,orphanRemoval = true)
     private List<Book> books;
 
     public Language(String languageName) {

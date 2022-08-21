@@ -17,7 +17,6 @@ import java.util.List;
 
 @Slf4j
 @Service
-@Primary
 public class CategoryServiceImpl implements CategoryService {
     CategoryDAO categoryDAO;
     @Autowired

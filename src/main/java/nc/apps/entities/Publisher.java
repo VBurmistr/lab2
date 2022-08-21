@@ -30,7 +30,7 @@ public class Publisher {
     private Integer id;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "publisher", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "publisher", fetch = FetchType.LAZY,orphanRemoval = true)
     private List<Book> books;
 
     @Column(name="publisher_name")

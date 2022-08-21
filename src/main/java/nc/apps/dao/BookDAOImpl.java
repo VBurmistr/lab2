@@ -279,7 +279,11 @@ public class BookDAOImpl implements BookDAO {
             statement.setLong(3, book.getCategory().getId());
             statement.setLong(4, book.getLanguage().getId());
             statement.setLong(5, book.getPublisher().getId());
-            statement.setObject(6, book.getPrequel().getId());
+            if(book.getPrequel()!=null){
+                statement.setObject(6, book.getPrequel().getId());
+            }else{
+                statement.setObject(6, null);
+            }
             log.info("Query for adding book:" + SQL_ADD_NEW);
             int res = statement.executeUpdate();
             if (res == 0) {

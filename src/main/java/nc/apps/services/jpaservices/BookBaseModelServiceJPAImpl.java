@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
+@Primary
 public class BookBaseModelServiceJPAImpl implements BookBaseModelService {
     private final BookRepository bookRepository;
 
