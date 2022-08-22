@@ -1,9 +1,9 @@
 package nc.apps.restcontrollers;
 
-import nc.apps.dto.AuthorAndTitle;
-import nc.apps.dto.BookTable;
+import nc.apps.dto.BookIDsDTO;
+import nc.apps.dto.ResponseObject;
+import nc.apps.dto.tabledtos.BookTable;
 import nc.apps.dto.SearchFiltersFromForm;
-import nc.apps.entities.Book;
 import nc.apps.services.exceptions.ServiceException;
 import nc.apps.services.interfaces.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,26 +21,24 @@ public class BookRestController {
         this.bookService = bookService;
     }
 
-    @PostMapping(value = "/remove/")
-    public ResponseEntity removeBook(@RequestParam int id) throws ServiceException {
-        boolean result = bookService.removeBook(id);
-        if (result) {
-            return new ResponseEntity(HttpStatus.OK);
-        }
-        return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+    @GetMapping(value = "/remove/{id}")
+    public ResponseEntity<ResponseObject> removeBook(@PathVariable int id) throws ServiceException {
+        bookService.removeBook(id);
+        ResponseObject obj = new ResponseObject();
+        obj.setSuccess(true);
+        return new ResponseEntity<>(obj,HttpStatus.OK);
     }
 
     @PostMapping(value = "/update/{id}")
-    public ResponseEntity updateBook(@RequestBody Book book, @PathVariable long id) throws ServiceException {
-        boolean result = bookService.updateBook(book, id);
-        if (result) {
-            return new ResponseEntity(HttpStatus.OK);
-        }
-        return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<ResponseObject> updateBook(@RequestBody BookIDsDTO bookIDsDTO, @PathVariable int id) throws ServiceException {
+        bookService.updateBook(bookIDsDTO,id);
+        ResponseObject obj = new ResponseObject();
+        obj.setSuccess(true);
+        return new ResponseEntity<>(obj,HttpStatus.OK);
     }
 
     @GetMapping(value = "/getall/")
-    public ResponseEntity<BookTable> getBooks(@RequestParam(required = false) String title,
+    public ResponseEntity<ResponseObject<BookTable>> getBooks(@RequestParam(required = false) String title,
                                               @RequestParam(required = false) String authorName,
                                               @RequestParam(required = false) String category,
                                               @RequestParam(required = false) String language,
@@ -51,20 +49,16 @@ public class BookRestController {
                                               ) throws ServiceException {
         SearchFiltersFromForm searchFiltersFromForm =
                 new SearchFiltersFromForm(page,title,authorName,category,language,publisher,orderBy,ordering);
-
         BookTable bookTable = bookService.getAllBooksOnPage(searchFiltersFromForm);
-        if (bookTable != null) {
-            return new ResponseEntity<>(bookTable, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        ResponseObject<BookTable> obj = new ResponseObject<>(true,bookTable);
+        return new ResponseEntity<>(obj,HttpStatus.OK);
     }
 
     @PostMapping(value = "/add/")
-    public ResponseEntity addBook(@RequestBody Book book) throws ServiceException {
-        boolean result = bookService.addBook(book);
-        if (result) {
-            return new ResponseEntity(HttpStatus.OK);
-        }
-        return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity addBook(@RequestBody BookIDsDTO bookIDsDTO) throws ServiceException {
+        bookService.addBook(bookIDsDTO);
+        ResponseObject obj = new ResponseObject();
+        obj.setSuccess(true);
+        return new ResponseEntity<>(obj,HttpStatus.OK);
     }
 }

@@ -9,6 +9,7 @@ function sendAddRequest(form){
             form.reset();
             return true;
         }else{
+            alert(JSON.parse(this.response).responseBody.msg)
             return false;
         }
     }

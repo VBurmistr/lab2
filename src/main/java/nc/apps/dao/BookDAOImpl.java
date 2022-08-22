@@ -115,12 +115,12 @@ public class BookDAOImpl implements BookDAO {
                 Category category = parseCategory(resultSet);
                 Language language = parseLanguage(resultSet);
                 Publisher publisher = parsePublisher(resultSet);
-                BookBaseModel bookBaseModelPrequel = parseBookBaseModelPrequel(resultSet);
-                books.add(new Book(resultSet.getLong("id"),
+                Book bookPrequel = parseBookPrequel(resultSet);
+                books.add(new Book(resultSet.getInt("id"),
                         resultSet.getString("title"),
                         author,
                         category,
-                        language, publisher, bookBaseModelPrequel));
+                        language, publisher, bookPrequel));
             }
         } catch (SQLException e) {
             throw new DAOException("Error when trying getting all books by filter:"+ bookDBFilter,e);
@@ -142,12 +142,12 @@ public class BookDAOImpl implements BookDAO {
                 Category category = parseCategory(resultSet);
                 Language language = parseLanguage(resultSet);
                 Publisher publisher = parsePublisher(resultSet);
-                BookBaseModel bookBaseModelPrequel = parseBookBaseModelPrequel(resultSet);
-                book = new Book(resultSet.getLong("id"),
+                Book bookPrequel = parseBookPrequel(resultSet);
+                book = new Book(resultSet.getInt("id"),
                         resultSet.getString("title"),
                         author,
                         category,
-                        language, publisher, bookBaseModelPrequel);
+                        language, publisher, bookPrequel);
             }
         } catch (SQLException e) {
             throw new DAOException("Error getting by id:"+id,e);
@@ -156,29 +156,39 @@ public class BookDAOImpl implements BookDAO {
     }
 
     private Author parseAuthor(ResultSet resultSet) throws SQLException {
-        return new Author(resultSet.getLong("author_id"),
-                resultSet.getString("first_name"),
-                resultSet.getString("last_name"));
+        return Author.builder()
+                .lastName(resultSet.getString("last_name"))
+                .firstName(resultSet.getString("first_name"))
+                .id(resultSet.getInt("author_id"))
+                .build();
     }
 
     private Category parseCategory(ResultSet resultSet) throws SQLException {
-        return new Category(resultSet.getLong("category_id"),
-                resultSet.getString("category_name"));
+        return Category.builder()
+                .categoryName(resultSet.getString("category_name"))
+                .id(resultSet.getInt("category_id"))
+                .build();
     }
 
-    private BookBaseModel parseBookBaseModelPrequel(ResultSet resultSet) throws SQLException {
-        return new BookBaseModel(resultSet.getLong("prequel_id"),
-                resultSet.getString("prequel_title"));
+    private Book parseBookPrequel(ResultSet resultSet) throws SQLException {
+        return Book.builder()
+                .id(resultSet.getInt("prequel_id"))
+                .title(resultSet.getString("prequel_title"))
+                .build();
     }
 
     private Publisher parsePublisher(ResultSet resultSet) throws SQLException {
-        return new Publisher(resultSet.getLong("publisher_id"),
-                resultSet.getString("publisher_name"));
+        return Publisher.builder()
+                .id(resultSet.getInt("publisher_id"))
+                .publisherName(resultSet.getString("publisher_name"))
+                .build();
     }
 
     private Language parseLanguage(ResultSet resultSet) throws SQLException {
-        return new Language(resultSet.getLong("language_id"),
-                resultSet.getString("language"));
+        return Language.builder()
+                .id(resultSet.getInt("language_id"))
+                .languageName(resultSet.getString("language"))
+                .build();
     }
 
 
@@ -269,7 +279,11 @@ public class BookDAOImpl implements BookDAO {
             statement.setLong(3, book.getCategory().getId());
             statement.setLong(4, book.getLanguage().getId());
             statement.setLong(5, book.getPublisher().getId());
-            statement.setObject(6, book.getPrequel().getId());
+            if(book.getPrequel()!=null){
+                statement.setObject(6, book.getPrequel().getId());
+            }else{
+                statement.setObject(6, null);
+            }
             log.info("Query for adding book:" + SQL_ADD_NEW);
             int res = statement.executeUpdate();
             if (res == 0) {

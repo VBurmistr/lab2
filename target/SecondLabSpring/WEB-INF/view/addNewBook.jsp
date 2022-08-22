@@ -58,7 +58,7 @@
                 <option value="0">Choose</option>
             </select>
         </div>
-        <input value="Add book" type="button" onclick="bookProcessing(this.form)" class="w-100 btn btn-primary form-control">
+        <input value="Add book" type="button" onclick="bookProcessingNew(this.form)" class="w-100 btn btn-primary form-control">
     </form>
 </div>
 </body>

@@ -16,9 +16,13 @@
     <a class="btn btn-primary" href="<%=request.getContextPath()%>/searchbooks">Search some book</a>
     <a class="btn btn-primary" href="<%=request.getContextPath()%>/addnewbook">Add Book</a>
     <a class="btn btn-primary" href="<%=request.getContextPath()%>/addauthor">Add author</a>
+    <a class="btn btn-primary" href="<%=request.getContextPath()%>/manageauthors">Manage authors</a>
     <a class="btn btn-primary" href="<%=request.getContextPath()%>/addlanguage">Add language</a>
+    <a class="btn btn-primary" href="<%=request.getContextPath()%>/managelanguages">Manage languages</a>
     <a class="btn btn-primary" href="<%=request.getContextPath()%>/addcategory">Add category</a>
+    <a class="btn btn-primary" href="<%=request.getContextPath()%>/managecategorys">Manage category's</a>
     <a class="btn btn-primary" href="<%=request.getContextPath()%>/addpublisher">Add publisher</a>
+    <a class="btn btn-primary" href="<%=request.getContextPath()%>/managepublishers">Manage publishers</a>
     <a class="btn btn-primary" href="<%=request.getContextPath()%>/smartadder">Book Smart Adder</a>
     <a class="btn btn-primary" href="<%=request.getContextPath()%>/logout">Logout</a>
 </div>

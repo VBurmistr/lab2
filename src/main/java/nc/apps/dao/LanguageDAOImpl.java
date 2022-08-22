@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 @Slf4j
 @Repository
 public class LanguageDAOImpl implements LanguageDAO {
@@ -31,33 +32,35 @@ public class LanguageDAOImpl implements LanguageDAO {
     @Override
     public List<Language> getAll() throws DAOException {
         List<Language> languages = new ArrayList<>();
-        log.info("Get all languages query:"+SQL_GET_ALL);
-        try(Connection con = dataSource.getConnection();
-            PreparedStatement statement = con.prepareStatement(SQL_GET_ALL)){
+        log.info("Get all languages query:" + SQL_GET_ALL);
+        try (Connection con = dataSource.getConnection();
+             PreparedStatement statement = con.prepareStatement(SQL_GET_ALL)) {
             ResultSet resultSet = statement.executeQuery();
-            while(resultSet.next()){
-                languages.add(new Language(resultSet.getLong("id"),
-                        resultSet.getString("language")));
+            while (resultSet.next()) {
+                languages.add(Language.builder()
+                        .id(resultSet.getInt("id"))
+                        .languageName(resultSet.getString("language"))
+                        .build());
             }
         } catch (SQLException e) {
-            throw new DAOException("Error while getting language's.",e);
+            throw new DAOException("Error while getting language's.", e);
         }
         return languages;
     }
 
 
     @Override
-    public void save(Language language)  throws DAOException {
-        log.info("Add new language query:"+SQL_GET_ALL);
-        try(Connection con = dataSource.getConnection();
-            PreparedStatement statement = con.prepareStatement(SQL_ADD_NEW)){
-            statement.setString(1,language.getLanguageName());
+    public void save(Language language) throws DAOException {
+        log.info("Add new language query:" + SQL_GET_ALL);
+        try (Connection con = dataSource.getConnection();
+             PreparedStatement statement = con.prepareStatement(SQL_ADD_NEW)) {
+            statement.setString(1, language.getLanguageName());
             int res = statement.executeUpdate();
             if (res == 0) {
-                throw new DAOException("Cant add language for some reason, language:"+language);
+                throw new DAOException("Cant add language for some reason, language:" + language);
             }
         } catch (SQLException e) {
-            throw new DAOException("Error while saving language:"+language,e);
+            throw new DAOException("Error while saving language:" + language, e);
         }
     }
 }

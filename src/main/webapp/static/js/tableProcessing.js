@@ -44,59 +44,49 @@ function fillTableOnPage(page) {
     for (const pair of new FormData(form)) {
         data.append(pair[0], pair[1]);
     }
-    data.set('page',page);
+    data.set('page', page);
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", getContextPath()+"/book/getall/?"+data, true);
+    xhr.open("GET", getContextPath() + "/book/getall/?" + data, true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-
-
-    //
-    // let rawObj = {};
-    // if (form !== undefined || form !== null) {
-    //     let formData = new FormData(form);
-    //     rawObj = Object.fromEntries(formData);
-    // }
-    // rawObj.page = page;
-
-
-
-    //xhr.send(JSON.stringify(rawObj));
-
     xhr.send();
-
     xhr.onload = function () {
         let data = JSON.parse(this.responseText);
-        tablePaginationRerender(data.totalPages, data.currentPage);
+        if (!data.success) {
+            throw 'response status: success=false';
+        }
+        let responseBody = data.responseBody;
+        tablePaginationRerender(responseBody.totalPages, responseBody.currentPage);
         let table = document.querySelector(".table_body");
-        for (let i = 0; i < data.books.length; i++) {
+        for (let i = 0; i < responseBody.books.length; i++) {
             let cellNum = 0
             let row = table.insertRow(-1);
-            row.insertCell(cellNum).appendChild(document.createTextNode(((data.currentPage - 1) * 10) + i + 1));
-            row.insertCell(++cellNum).appendChild(document.createTextNode(data.books[i].title));
-            row.insertCell(++cellNum).appendChild(document.createTextNode(data.books[i].author.firstName + " " + data.books[i].author.lastName));
-            row.insertCell(++cellNum).appendChild(document.createTextNode(data.books[i].category.categoryName));
-            row.insertCell(++cellNum).appendChild(document.createTextNode(data.books[i].language.languageName));
-            row.insertCell(++cellNum).appendChild(document.createTextNode(data.books[i].publisher.publisherName));
+            row.insertCell(cellNum).appendChild(document.createTextNode(((responseBody.currentPage - 1) * 10) + i + 1));
+            row.insertCell(++cellNum).appendChild(document.createTextNode(responseBody.books[i].title));
+            row.insertCell(++cellNum).appendChild(document.createTextNode(responseBody.books[i].author.firstName + " " + responseBody.books[i].author.lastName));
+            row.insertCell(++cellNum).appendChild(document.createTextNode(responseBody.books[i].category.categoryName));
+            row.insertCell(++cellNum).appendChild(document.createTextNode(responseBody.books[i].language.languageName));
+            row.insertCell(++cellNum).appendChild(document.createTextNode(responseBody.books[i].publisher.publisherName));
             row.insertCell(++cellNum).appendChild(
                 createLink(
                     false,
                     'link-primary',
-                    data.books[i].prequel.title == null ? '' : data.books[i].prequel.title,
-                    getContextPath()+'/editbook/' + data.books[i].prequel.id
-            ));
+                    (responseBody.books[i].prequel === null || responseBody.books[i].prequel.title === null) ? '' : responseBody.books[i].prequel.title,
+                    getContextPath() + '/editbook/' + ((responseBody.books[i].prequel === null
+                        || responseBody.books[i].prequel.title === null) ? '' : responseBody.books[i].prequel.id)
+                ));
             row.insertCell(++cellNum).appendChild(
                 createLink(
                     false,
                     'link-primary',
                     'Edit',
-                    getContextPath()+'/editbook/' + data.books[i].id)
+                    getContextPath() + '/editbook/' + responseBody.books[i].id)
             );
             row.insertCell(++cellNum).appendChild(
                 createButton(
                     false,
                     'btn btn-primary',
-                    'removeBookWithId(this.parentElement.closest("tr"),' + data.books[i].id + ');',
+                    'removeBookWithId(this.parentElement.closest("tr"),' + responseBody.books[i].id + ');',
                     'Remove'));
         }
     };
@@ -130,22 +120,26 @@ function clearTableBody() {
 }
 
 function removeBookWithId(row, id) {
-    let xhr = new XMLHttpRequest();
-    xhr.open('POST', getContextPath()+"/book/remove/")
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("id=" + id);
-    xhr.onload = function () {
-        if (this.status === 200) {
-            row.remove();
+    fetch(getContextPath() + "/book/remove/" + id, {
+        method: 'GET'
+    }).then((response) =>
+        response.json()
+    ).then((jsonResp) => {
+        if (jsonResp !== undefined) {
+            if (jsonResp.success) {
+                row.remove();
+            } else {
+                alert(jsonResp.responseBody.msg)
+            }
         } else {
-            alert("Something wrong")
         }
-    }
+    })
 }
 
 window.addEventListener('load', function () {
     fillTableOnPage(1);
 })
+
 function getContextPath() {
-    return window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+    return window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
 }

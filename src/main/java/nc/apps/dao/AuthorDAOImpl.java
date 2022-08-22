@@ -8,8 +8,6 @@ import nc.apps.entities.Author;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -40,9 +38,10 @@ public class AuthorDAOImpl implements AuthorDAO {
             PreparedStatement statement = con.prepareStatement(SQL_GET_ALL)){
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next()){
-                authors.add(new Author(resultSet.getLong("id"),
-                        resultSet.getString("first_name"),
-                        resultSet.getString("last_name")));
+                authors.add(Author.builder()
+                        .id(resultSet.getInt("id"))
+                        .firstName(resultSet.getString("first_name"))
+                        .lastName(resultSet.getString("last_name")).build());
             }
         } catch (SQLException e) {
             throw new DAOException("Error while getting all authors.",e);

@@ -1,5 +1,7 @@
 package nc.apps.restcontrollers;
 
+import nc.apps.dto.ResponseObject;
+import nc.apps.dto.tabledtos.AuthorDTO;
 import nc.apps.entities.Author;
 import nc.apps.services.exceptions.ServiceException;
 import nc.apps.services.interfaces.AuthorService;
@@ -21,20 +23,27 @@ public class AuthorRestController {
     }
 
     @PostMapping(value = "/add/")
-    public ResponseEntity addAuthor(@RequestBody Author author) throws ServiceException {
-        boolean result = authorService.save(author);
-        if(result){
-            return new ResponseEntity(HttpStatus.OK);
-        }
-        return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity addAuthor(@RequestBody AuthorDTO author) throws ServiceException {
+        authorService.save(author);
+        ResponseObject obj = new ResponseObject();
+        obj.setSuccess(true);
+        return new ResponseEntity<>(obj,HttpStatus.OK);
     }
 
     @GetMapping(value ="/getall/")
-    public ResponseEntity<List<Author>> getAllAuthors() throws ServiceException {
-        List<Author> authors = authorService.getAll();
-        if(authors!=null){
-            return new ResponseEntity<>(authors,HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<ResponseObject<List<AuthorDTO>>> getAllAuthors() throws ServiceException {
+        List<AuthorDTO> authors = authorService.getAll();
+        ResponseObject<List<AuthorDTO>> obj = new ResponseObject<>();
+        obj.setResponseBody(authors);
+        obj.setSuccess(true);
+        return new ResponseEntity<>(obj,HttpStatus.OK);
+    }
+
+    @GetMapping(value ="/remove/{id}")
+    public ResponseEntity<ResponseObject> removeAuthor(@PathVariable Integer id) throws ServiceException {
+        authorService.remove(id);
+        ResponseObject obj = new ResponseObject<>();
+        obj.setSuccess(true);
+        return new ResponseEntity<>(obj,HttpStatus.OK);
     }
 }
