@@ -24,10 +24,9 @@ public class CategoryServiceImpl implements CategoryService {
         this.categoryDAO = categoryDAO;
     }
 
-    public boolean save(CategoryDTO category) throws ServiceException {
+    public void save(CategoryDTO category) throws ServiceException {
         try {
             categoryDAO.save(DTOToDomainMapper.mapCategory(category));
-            return true;
         }catch (DAOException e){
             throw new ServiceException(e);
         }
@@ -39,5 +38,10 @@ public class CategoryServiceImpl implements CategoryService {
         }catch (DAOException e){
             throw new ServiceException(e);
         }
+    }
+
+    @Override
+    public void remove(int id) throws ServiceException {
+        throw new ServiceException("Unimplemented operation");
     }
 }

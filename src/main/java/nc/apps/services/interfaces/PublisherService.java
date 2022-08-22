@@ -8,6 +8,7 @@ import nc.apps.services.exceptions.ServiceException;
 import java.util.List;
 
 public interface PublisherService {
-    boolean save(PublisherDTO publisher) throws ServiceException;
+    void save(PublisherDTO publisher) throws ServiceException;
     List<PublisherDTO> getAll() throws ServiceException;
+    void remove(int id) throws ServiceException;
 }

@@ -29,10 +29,9 @@ public class AuthorServiceJPAImpl implements AuthorService {
         this.authorRepository = authorRepository;
     }
 
-    public boolean save(AuthorDTO author) throws ServiceException {
+    public void save(AuthorDTO author) throws ServiceException {
         try {
             authorRepository.save(DTOToDomainMapper.mapAuthor(author));
-            return true;
         }catch (Exception e){
             throw new ServiceException(e);
         }
@@ -41,6 +40,15 @@ public class AuthorServiceJPAImpl implements AuthorService {
     public List<AuthorDTO> getAll() throws ServiceException {
         try {
             return DomainToDTOMapper.mapAuthors(authorRepository.findAll());
+        }catch (Exception e){
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public void remove(int id) throws ServiceException {
+        try {
+            authorRepository.deleteById(id);
         }catch (Exception e){
             throw new ServiceException(e);
         }

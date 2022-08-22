@@ -25,10 +25,9 @@ public class PublisherServiceImpl implements PublisherService {
         this.publisherDAO = publisherDAO;
     }
 
-    public boolean save(PublisherDTO publisher) throws ServiceException {
+    public void save(PublisherDTO publisher) throws ServiceException {
         try {
             publisherDAO.save(DTOToDomainMapper.mapPublisher(publisher));
-            return true;
         }catch (DAOException e){
             throw new ServiceException(e);
         }
@@ -40,5 +39,10 @@ public class PublisherServiceImpl implements PublisherService {
         }catch (DAOException e){
             throw new ServiceException(e);
         }
+    }
+
+    @Override
+    public void remove(int id) throws ServiceException {
+        throw new ServiceException("Unimplemented operation");
     }
 }

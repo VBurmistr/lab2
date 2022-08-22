@@ -7,6 +7,8 @@ import nc.apps.services.exceptions.ServiceException;
 import java.util.List;
 
 public interface LanguageService {
-    boolean save(LanguageDTO language) throws ServiceException;
+    void save(LanguageDTO language) throws ServiceException;
     List<LanguageDTO> getAll() throws ServiceException;
+    void remove(int id) throws ServiceException;
+
 }

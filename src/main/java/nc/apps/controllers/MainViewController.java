@@ -76,6 +76,25 @@ public class MainViewController {
         return "addPublisher";
     }
 
+    @GetMapping(path = "/manageauthors")
+    public String manageAuthors(){
+        return "manageAuthors";
+    }
+    @GetMapping(path = "/managecategorys")
+    public String manageCategorys(){
+        return "manageCategorys";
+    }
+    @GetMapping(path = "/managelanguages")
+    public String manageLanguages(){
+        return "manageLanguages";
+    }
+    @GetMapping(path = "/managepublishers")
+    public String managePublishers(){
+        return "managePublishers";
+    }
+
+
+
     @GetMapping(path = "/smartadder")
     public ModelAndView addBookSmart(){
         ModelAndView modelAndView = new ModelAndView();

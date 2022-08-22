@@ -7,6 +7,8 @@ import nc.apps.entities.Author;
 import java.util.List;
 
 public interface AuthorService {
-    boolean save(AuthorDTO author) throws ServiceException;
+    void save(AuthorDTO author) throws ServiceException;
     List<AuthorDTO> getAll() throws ServiceException;
+    void remove(int id) throws ServiceException;
+
 }

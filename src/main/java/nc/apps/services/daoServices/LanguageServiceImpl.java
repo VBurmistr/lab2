@@ -25,10 +25,9 @@ public class LanguageServiceImpl implements LanguageService {
         this.languageDAO = languageDAO;
     }
 
-    public boolean save(LanguageDTO language) throws ServiceException {
+    public void save(LanguageDTO language) throws ServiceException {
         try {
             languageDAO.save(DTOToDomainMapper.mapLanguage(language));
-            return true;
         }catch (DAOException e){
             throw new ServiceException(e);
         }
@@ -40,5 +39,10 @@ public class LanguageServiceImpl implements LanguageService {
         }catch (DAOException e){
             throw new ServiceException(e);
         }
+    }
+
+    @Override
+    public void remove(int id) throws ServiceException {
+        throw new ServiceException("Unimplemented operation");
     }
 }

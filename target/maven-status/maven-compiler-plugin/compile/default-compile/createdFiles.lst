@@ -21,6 +21,7 @@ nc\apps\dto\tabledtos\CategoryDTO$CategoryDTOBuilder.class
 nc\apps\mappers\SearchFilterToBookFilterMapping.class
 nc\apps\dto\ResponseObject.class
 nc\apps\repositories\CategoryRepository.class
+nc\apps\mappers\SpringDataSpecificationMapper.class
 nc\apps\dao\interfaces\AuthorDAO.class
 nc\apps\dto\tabledtos\BookBaseModelDTO.class
 nc\apps\dao\interfaces\PublisherDAO.class
@@ -45,6 +46,7 @@ nc\apps\dto\AuthorAndTitle.class
 nc\apps\services\interfaces\BookBaseModelService.class
 nc\apps\dto\ErrorObject.class
 nc\apps\dto\SearchFiltersFromForm.class
+nc\apps\mappers\SpringDataSortMapping.class
 nc\apps\services\jpaservices\AuthorServiceJPAImpl.class
 nc\apps\dto\Ordering.class
 nc\apps\dao\PublisherDAOImpl.class
@@ -78,6 +80,7 @@ nc\apps\entities\Publisher.class
 nc\apps\repositories\BookRepository.class
 nc\apps\MvcWebApplicationInitializer.class
 nc\apps\services\daoServices\BookBaseModelServiceImpl.class
+nc\apps\springdataspecifications\BookSpecifications.class
 nc\apps\services\interfaces\AuthorService.class
 nc\apps\connectionmanager\ConnectionManagerDriver.class
 nc\apps\config\SpringDataConfig.class

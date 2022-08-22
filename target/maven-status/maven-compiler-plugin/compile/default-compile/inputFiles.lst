@@ -37,6 +37,7 @@ C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\j
 C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\java\nc\apps\config\SecurityConfig.java
 C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\java\nc\apps\dto\tabledtos\BookDTO.java
 C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\java\nc\apps\dto\tabledtos\CategoryDTO.java
+C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\java\nc\apps\mappers\SpringDataSpecificationMapper.java
 C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\java\nc\apps\controllers\MainViewController.java
 C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\java\nc\apps\entities\Book.java
 C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\java\nc\apps\propertyholder\SmartAdderPropertyHolder.java
@@ -54,6 +55,7 @@ C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\j
 C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\java\nc\apps\dao\exception\DAOException.java
 C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\java\nc\apps\entities\Language.java
 C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\java\nc\apps\dao\BookDAOImpl.java
+C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\java\nc\apps\springdataspecifications\BookSpecifications.java
 C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\java\nc\apps\dto\tabledtos\AuthorDTO.java
 C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\java\nc\apps\services\daoServices\AuthorServiceImpl.java
 C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\java\nc\apps\dao\BookBaseModelDAOImpl.java
@@ -65,6 +67,7 @@ C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\j
 C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\java\nc\apps\services\jpaservices\BookBaseModelServiceJPAImpl.java
 C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\java\nc\apps\dao\AuthorDAOImpl.java
 C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\java\nc\apps\services\daoServices\LanguageServiceImpl.java
+C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\java\nc\apps\mappers\SpringDataSortMapping.java
 C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\java\nc\apps\dao\interfaces\BookBaseModelDAO.java
 C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\java\nc\apps\services\interfaces\CategoryService.java
 C:\Users\Home-PC\IdeaProjects\NetCrackerLabs\SecondLabSpringFromMaven\src\main\java\nc\apps\connectionmanager\interfaces\ConnectionManager.java

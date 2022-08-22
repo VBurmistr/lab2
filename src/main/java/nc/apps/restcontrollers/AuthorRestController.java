@@ -38,4 +38,12 @@ public class AuthorRestController {
         obj.setSuccess(true);
         return new ResponseEntity<>(obj,HttpStatus.OK);
     }
+
+    @GetMapping(value ="/remove/{id}")
+    public ResponseEntity<ResponseObject> removeAuthor(@PathVariable Integer id) throws ServiceException {
+        authorService.remove(id);
+        ResponseObject obj = new ResponseObject<>();
+        obj.setSuccess(true);
+        return new ResponseEntity<>(obj,HttpStatus.OK);
+    }
 }

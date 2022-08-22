@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS public.lab3_book_table
     CONSTRAINT lab3_book_table_prequel_id_fkey FOREIGN KEY (prequel_id)
         REFERENCES public.lab3_book_table (id) MATCH SIMPLE
         ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
+        ON DELETE SET NULL ,
     CONSTRAINT lab3_book_table_publisher_id_fkey FOREIGN KEY (publisher_id)
         REFERENCES public.lab3_publisher_table (id) MATCH SIMPLE
         ON UPDATE NO ACTION

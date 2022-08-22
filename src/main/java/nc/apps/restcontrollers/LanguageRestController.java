@@ -40,4 +40,11 @@ public class LanguageRestController {
         return new ResponseEntity<>(obj,HttpStatus.OK);
     }
 
+    @GetMapping(value ="/remove/{id}")
+    public ResponseEntity<ResponseObject> removeLanguage(@PathVariable Integer id) throws ServiceException {
+        languageService.remove(id);
+        ResponseObject obj = new ResponseObject<>();
+        obj.setSuccess(true);
+        return new ResponseEntity<>(obj,HttpStatus.OK);
+    }
 }

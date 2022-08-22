@@ -1,6 +1,7 @@
 package nc.apps.restcontrollers;
 
 import nc.apps.dto.ResponseObject;
+import nc.apps.dto.tabledtos.AuthorDTO;
 import nc.apps.dto.tabledtos.CategoryDTO;
 import nc.apps.entities.Author;
 import nc.apps.entities.Category;
@@ -36,6 +37,14 @@ public class CategoryRestController {
         List<CategoryDTO> categories = categoryService.getAll();
         ResponseObject<List<CategoryDTO>> obj = new ResponseObject<>();
         obj.setResponseBody(categories);
+        obj.setSuccess(true);
+        return new ResponseEntity<>(obj,HttpStatus.OK);
+    }
+
+    @GetMapping(value ="/remove/{id}")
+    public ResponseEntity<ResponseObject> removeCategory(@PathVariable Integer id) throws ServiceException {
+        categoryService.remove(id);
+        ResponseObject obj = new ResponseObject<>();
         obj.setSuccess(true);
         return new ResponseEntity<>(obj,HttpStatus.OK);
     }

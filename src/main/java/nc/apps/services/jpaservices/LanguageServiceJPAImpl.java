@@ -26,10 +26,9 @@ public class LanguageServiceJPAImpl implements LanguageService {
         this.languageRepository = languageRepository;
     }
 
-    public boolean save(LanguageDTO language) throws ServiceException {
+    public void save(LanguageDTO language) throws ServiceException {
         try {
             languageRepository.save(DTOToDomainMapper.mapLanguage(language));
-            return true;
         }catch (Exception e){
             throw new ServiceException(e);
         }
@@ -38,6 +37,15 @@ public class LanguageServiceJPAImpl implements LanguageService {
     public List<LanguageDTO> getAll() throws ServiceException {
         try {
             return DomainToDTOMapper.mapLanguages(languageRepository.findAll());
+        }catch (Exception e){
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public void remove(int id) throws ServiceException {
+        try {
+            languageRepository.deleteById(id);
         }catch (Exception e){
             throw new ServiceException(e);
         }

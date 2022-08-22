@@ -23,10 +23,9 @@ public class AuthorServiceImpl implements AuthorService {
         this.authorDAO = authorDAO;
     }
 
-    public boolean save(AuthorDTO author) throws ServiceException {
+    public void save(AuthorDTO author) throws ServiceException {
         try {
             authorDAO.save(DTOToDomainMapper.mapAuthor(author));
-            return true;
         }catch (DAOException e){
             throw new ServiceException(e);
         }
@@ -38,5 +37,10 @@ public class AuthorServiceImpl implements AuthorService {
         }catch (DAOException e){
             throw new ServiceException(e);
         }
+    }
+
+    @Override
+    public void remove(int id) throws ServiceException {
+        throw new ServiceException("Unimplemented operation");
     }
 }

@@ -26,10 +26,9 @@ public class PublisherServiceJPAImpl implements PublisherService {
         this.publisherRepository = publisherRepository;
     }
 
-    public boolean save(PublisherDTO publisher) throws ServiceException {
+    public void save(PublisherDTO publisher) throws ServiceException {
         try {
             publisherRepository.save(DTOToDomainMapper.mapPublisher(publisher));
-            return true;
         }catch (Exception e){
             throw new ServiceException(e);
         }
@@ -38,6 +37,15 @@ public class PublisherServiceJPAImpl implements PublisherService {
     public List<PublisherDTO> getAll() throws ServiceException {
         try {
             return DomainToDTOMapper.mapPublishers(publisherRepository.findAll());
+        }catch (Exception e){
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public void remove(int id) throws ServiceException {
+        try {
+            publisherRepository.deleteById(id);
         }catch (Exception e){
             throw new ServiceException(e);
         }
