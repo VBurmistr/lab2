@@ -23,26 +23,21 @@ import java.util.Set;
 @Entity
 @Check(constraints = "id <> prequel_id AND title <> ''")
 public class Book extends BookBaseModel {
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id", nullable = false, foreignKey = @ForeignKey(name = "lab3_book_table_author_id_fkey"))
-    @Fetch(FetchMode.JOIN)
     private Author author;
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", nullable = false, foreignKey = @ForeignKey(name = "lab3_book_table_category_id_fkey"))
-    @Fetch(FetchMode.JOIN)
     private Category category;
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "language_id", nullable = false, foreignKey = @ForeignKey(name = "lab3_book_table_language_id_fkey"))
-    @Fetch(FetchMode.JOIN)
     private Language language;
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "publisher_id", nullable = false, foreignKey = @ForeignKey(name = "lab3_book_table_publisher_id_fkey"))
-    @Fetch(FetchMode.JOIN)
     private Publisher publisher;
     @ToString.Exclude
     @JoinColumn(name = "prequel_id", referencedColumnName = "id")
-    @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
-    @Fetch(FetchMode.JOIN)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     private Book prequel;
 
     @ToString.Exclude
