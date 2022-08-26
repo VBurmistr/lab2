@@ -1,0 +1,11 @@
+
+`	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+`	java:S112'"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+a
+java:S1128"KRemove this unused import 'org.springframework.context.annotation.Primary'.(“ğ›ß
+f
+java:S1128"KRemove this unused import 'org.springframework.context.annotation.Profile'.(Øİ¥İøÿÿÿÿ
+`
+java:S1128"ERemove this unused import 'org.springframework.stereotype.Component'.(Ş÷Ñ¸ÿÿÿÿÿ
+Q
+java:S1128	";Remove this unused import 'javax.annotation.PostConstruct'.(›ÅÁ

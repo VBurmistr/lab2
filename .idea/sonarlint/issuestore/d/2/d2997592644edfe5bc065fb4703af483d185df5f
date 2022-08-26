@@ -1,0 +1,19 @@
+
+¬
+java:S4449'"–Annotate the parameter with @javax.annotation.Nullable in method 'setJpaProperties' declaration, or make sure that null can not be passed as argument.(›ïá6
+Z
+java:S1128"DRemove this unused import 'org.hibernate.dialect.PostgreSQLDialect'.(Öû¡Ï
+a
+java:S1128"KRemove this unused import 'org.hibernate.jpa.HibernatePersistenceProvider'.(—èŸŒ
+u
+java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸Îùÿÿÿÿ8Ä×óÎ­0
+q
+java:S1128"[Remove this unused import 'org.springframework.orm.hibernate5.HibernateTransactionManager'.(˜Ÿñª
+m
+java:S1128"WRemove this unused import 'org.springframework.orm.hibernate5.LocalSessionFactoryBean'.(ÏÒÅÑ
+l
+java:S1128"VRemove this unused import 'org.springframework.orm.jpa.LocalEntityManagerFactoryBean'.(öõœ
+[
+java:S1128"FRemove this unused import 'javax.persistence.spi.PersistenceProvider'.(ƒÀt
+G
+java:S1128"1Remove this unused import 'java.util.Properties'.(¬µ²
