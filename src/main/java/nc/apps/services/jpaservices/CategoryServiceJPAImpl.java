@@ -24,7 +24,7 @@ public class CategoryServiceJPAImpl implements CategoryService {
     public CategoryServiceJPAImpl(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
-
+    @Override
     public void save(CategoryDTO category) throws ServiceException {
         try {
             categoryRepository.save(DTOToDomainMapper.mapCategory(category));
@@ -32,7 +32,7 @@ public class CategoryServiceJPAImpl implements CategoryService {
             throw new ServiceException(e);
         }
     }
-
+    @Override
     public List<CategoryDTO> getAll() throws ServiceException {
         try {
             return DomainToDTOMapper.mapCategories(categoryRepository.findAll());
@@ -40,7 +40,6 @@ public class CategoryServiceJPAImpl implements CategoryService {
             throw new ServiceException(e);
         }
     }
-
     @Override
     public void remove(int id) throws ServiceException {
         try {

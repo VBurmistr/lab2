@@ -19,17 +19,13 @@ import java.util.List;
 @Slf4j
 @Repository
 public class AuthorDAOImpl implements AuthorDAO {
-
     private final DataSource dataSource;
-
+    public static final String SQL_GET_ALL = "SELECT * FROM LAB3_AUTHOR_TABLE";
+    public static final String SQL_ADD_NEW = "INSERT INTO LAB3_AUTHOR_TABLE (first_name,last_name) VALUES (?,?)";
     @Autowired
     public AuthorDAOImpl(DataSource dataSource) {
         this.dataSource = dataSource;
     }
-
-    public static final String SQL_GET_ALL = "SELECT * FROM LAB3_AUTHOR_TABLE";
-    public static final String SQL_ADD_NEW = "INSERT INTO LAB3_AUTHOR_TABLE (first_name,last_name) VALUES (?,?)";
-
     @Override
     public List<Author> getAll() throws DAOException{
         List<Author> authors = new ArrayList<>();

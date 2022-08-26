@@ -20,15 +20,12 @@ import java.util.List;
 @Repository
 public class CategoryDAOImpl implements CategoryDAO {
     private final DataSource dataSource;
-
+    public static final String SQL_GET_ALL = "SELECT * FROM LAB3_CATEGORY_TABLE";
+    public static final String SQL_ADD_NEW = "INSERT INTO LAB3_CATEGORY_TABLE (category_name) VALUES (?)";
     @Autowired
     public CategoryDAOImpl(DataSource dataSource) {
         this.dataSource = dataSource;
     }
-
-    public static final String SQL_GET_ALL = "SELECT * FROM LAB3_CATEGORY_TABLE";
-    public static final String SQL_ADD_NEW = "INSERT INTO LAB3_CATEGORY_TABLE (category_name) VALUES (?)";
-
     @Override
     public List<Category> getAll() throws DAOException {
         List<Category> categories = new ArrayList<>();

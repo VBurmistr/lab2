@@ -28,7 +28,7 @@ public class BookBaseModelServiceJPAImpl implements BookBaseModelService {
     public BookBaseModelServiceJPAImpl(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
-
+    @Override
     public List<BookBaseModelDTO> getAll() throws ServiceException {
         try {
               List<BookBaseModel> books =  bookRepository.findAll()

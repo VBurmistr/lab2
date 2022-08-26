@@ -11,7 +11,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConnectionManagerDriver implements ConnectionManager {
+public final class ConnectionManagerDriver implements ConnectionManager {
     private final String username;
     private final String password;
     private final String url;

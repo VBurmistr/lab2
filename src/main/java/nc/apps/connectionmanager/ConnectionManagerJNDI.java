@@ -3,9 +3,6 @@ package nc.apps.connectionmanager;
 import lombok.extern.slf4j.Slf4j;
 import nc.apps.connectionmanager.interfaces.ConnectionManager;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.*;
-import org.springframework.core.type.AnnotatedTypeMetadata;
-import org.springframework.stereotype.Component;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -15,9 +12,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Hashtable;
 @Slf4j
-public class ConnectionManagerJNDI implements ConnectionManager {
-    @Value("${weblogic.datasource.jndi}")
-    private String weblogicDatasourceJndi;
+public final class ConnectionManagerJNDI implements ConnectionManager {
+    private final String weblogicDatasourceJndi;
+
+    public ConnectionManagerJNDI(@Value("${weblogic.datasource.jndi}") String weblogicDatasourceJndi) {
+        this.weblogicDatasourceJndi = weblogicDatasourceJndi;
+    }
 
     public Connection getConnection() throws SQLException {
         Connection connection = null;

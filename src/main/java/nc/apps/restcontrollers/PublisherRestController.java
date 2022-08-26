@@ -17,7 +17,6 @@ import java.util.List;
 @RequestMapping("/publisher/")
 public class PublisherRestController {
     private final PublisherService publisherService;
-
     @Autowired
     public PublisherRestController(PublisherService publisherService) {
         this.publisherService = publisherService;

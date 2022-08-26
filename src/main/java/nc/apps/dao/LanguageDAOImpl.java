@@ -19,11 +19,9 @@ import java.util.List;
 @Slf4j
 @Repository
 public class LanguageDAOImpl implements LanguageDAO {
-
     private final DataSource dataSource;
     public static final String SQL_GET_ALL = "SELECT * FROM LAB3_LANGUAGE_TABLE";
     public static final String SQL_ADD_NEW = "INSERT INTO LAB3_LANGUAGE_TABLE (language) VALUES (?)";
-
     @Autowired
     public LanguageDAOImpl(DataSource dataSource) {
         this.dataSource = dataSource;

@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 @Service
 public class CategoryServiceImpl implements CategoryService {
-    CategoryDAO categoryDAO;
+    private final CategoryDAO categoryDAO;
     @Autowired
     public CategoryServiceImpl(CategoryDAO categoryDAO) {
         this.categoryDAO = categoryDAO;

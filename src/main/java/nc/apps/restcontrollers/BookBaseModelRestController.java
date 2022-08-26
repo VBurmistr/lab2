@@ -17,7 +17,6 @@ import java.util.List;
 @RequestMapping("/bookbasemodel/")
 public class BookBaseModelRestController {
     private final BookBaseModelService bookBaseModelService;
-
     @Autowired
     public BookBaseModelRestController(BookBaseModelService bookBaseModelService) {
         this.bookBaseModelService = bookBaseModelService;

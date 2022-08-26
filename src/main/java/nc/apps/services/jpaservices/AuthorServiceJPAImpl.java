@@ -29,6 +29,7 @@ public class AuthorServiceJPAImpl implements AuthorService {
         this.authorRepository = authorRepository;
     }
 
+    @Override
     public void save(AuthorDTO author) throws ServiceException {
         try {
             authorRepository.save(DTOToDomainMapper.mapAuthor(author));
@@ -36,7 +37,7 @@ public class AuthorServiceJPAImpl implements AuthorService {
             throw new ServiceException(e);
         }
     }
-
+    @Override
     public List<AuthorDTO> getAll() throws ServiceException {
         try {
             return DomainToDTOMapper.mapAuthors(authorRepository.findAll());

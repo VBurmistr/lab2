@@ -26,13 +26,13 @@ import java.util.Optional;
 @Service
 @Primary
 public class BookJPAServiceImpl implements BookService {
-    public static final int TABLE_ROW_LIMIT = 10;
+    private static final int TABLE_ROW_LIMIT = 10;
     private final BookRepository bookRepository;
 
     public BookJPAServiceImpl(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
-
+    @Override
     public BookDTO getBookById(int id) throws ServiceException {
         try {
             Optional<Book> book = bookRepository.findById(id);
@@ -45,6 +45,7 @@ public class BookJPAServiceImpl implements BookService {
         }
     }
 
+    @Override
     public boolean updateBook(BookIDsDTO bookIDsDTO, int id) throws ServiceException {
         try {
             Book book = DTOToDomainMapper.mapBook(bookIDsDTO);
@@ -57,6 +58,7 @@ public class BookJPAServiceImpl implements BookService {
     }
 
     @Transactional
+    @Override
     public boolean removeBook(int id) throws ServiceException {
         try {
             bookRepository.findById(id)
@@ -72,7 +74,7 @@ public class BookJPAServiceImpl implements BookService {
             throw new ServiceException(e);
         }
     }
-
+    @Override
     public boolean addBook(BookIDsDTO bookIDsDTO) throws ServiceException {
         try {
             Book book = DTOToDomainMapper.mapBook(bookIDsDTO);
@@ -82,14 +84,14 @@ public class BookJPAServiceImpl implements BookService {
             throw new ServiceException(e);
         }
     }
-
+    @Override
     public BookTable getAllBooksOnPage(SearchFiltersFromForm searchFiltersFromForm) throws ServiceException {
         try {
 
             Specification<Book> specs = SpringDataSpecificationMapper.mapSpecs(searchFiltersFromForm);
             Sort sort = SpringDataSortMapping.map(searchFiltersFromForm);
             Page<Book> books = bookRepository.findAll(specs,
-                    PageRequest.of(searchFiltersFromForm.getPage() - 1, 10, sort));
+                    PageRequest.of(searchFiltersFromForm.getPage() - 1, TABLE_ROW_LIMIT, sort));
 
             List<BookDTO> bookDTOs = DomainToDTOMapper.mapBookPage(books);
             return new BookTable(bookDTOs, books.getTotalPages(), searchFiltersFromForm.getPage());

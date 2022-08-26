@@ -17,7 +17,7 @@ import java.util.List;
 @Slf4j
 @Service
 public class BookBaseModelServiceImpl implements BookBaseModelService {
-    BookBaseModelDAO bookBaseModelDAO;
+    private final BookBaseModelDAO bookBaseModelDAO;
     @Autowired
     public BookBaseModelServiceImpl( BookBaseModelDAO bookBaseModelDAO) {
         this.bookBaseModelDAO = bookBaseModelDAO;

@@ -22,12 +22,10 @@ public class PublisherDAOImpl implements PublisherDAO {
     private final DataSource dataSource;
     public static final String SQL_GET_ALL = "SELECT * FROM LAB3_PUBLISHER_TABLE";
     public static final String SQL_ADD_NEW = "INSERT INTO LAB3_PUBLISHER_TABLE (publisher_name) VALUES (?)";
-
     @Autowired
     public PublisherDAOImpl(DataSource dataSource) {
         this.dataSource = dataSource;
     }
-
     @Override
     public List<Publisher> getAll() throws DAOException {
         List<Publisher> publishers = new ArrayList<>();

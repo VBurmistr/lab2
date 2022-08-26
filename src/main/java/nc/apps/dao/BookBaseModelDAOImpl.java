@@ -19,13 +19,11 @@ import java.util.List;
 @Repository
 public class BookBaseModelDAOImpl implements BookBaseModelDAO {
     private final DataSource dataSource;
-
+    public static final String SQL_GET_ALL = "SELECT id, title FROM LAB3_BOOK_TABLE";
     @Autowired
     public BookBaseModelDAOImpl(DataSource dataSource) {
         this.dataSource = dataSource;
     }
-
-    public static final String SQL_GET_ALL = "SELECT id, title FROM LAB3_BOOK_TABLE";
 
     @Override
     public List<BookBaseModel> getAll() throws DAOException{

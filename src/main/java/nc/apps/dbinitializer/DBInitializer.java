@@ -20,15 +20,13 @@ import java.util.stream.Collectors;
 @Slf4j
 @Component
 public class DBInitializer {
-    Resource resourceFile;
-    DataSource dataSource;
-
+    private final Resource resourceFile;
+    private final DataSource dataSource;
     public DBInitializer(@Value("classpath:tableCreator.sql") Resource resourceFile,
                          @Autowired DataSource dataSource) {
         this.resourceFile = resourceFile;
         this.dataSource = dataSource;
     }
-
     @PostConstruct
     public void initializeDB() {
         try (Connection con = dataSource.getConnection();

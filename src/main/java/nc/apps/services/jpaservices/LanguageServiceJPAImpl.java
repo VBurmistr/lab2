@@ -26,6 +26,7 @@ public class LanguageServiceJPAImpl implements LanguageService {
         this.languageRepository = languageRepository;
     }
 
+    @Override
     public void save(LanguageDTO language) throws ServiceException {
         try {
             languageRepository.save(DTOToDomainMapper.mapLanguage(language));
@@ -34,6 +35,7 @@ public class LanguageServiceJPAImpl implements LanguageService {
         }
     }
 
+    @Override
     public List<LanguageDTO> getAll() throws ServiceException {
         try {
             return DomainToDTOMapper.mapLanguages(languageRepository.findAll());

@@ -18,11 +18,6 @@ import java.util.List;
 @Repository
 public class BookDAOImpl implements BookDAO {
     private final DataSource dataSource;
-
-    @Autowired
-    public BookDAOImpl(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
     private static final String SQL_DELETE_BOOK = "" +
             "            DELETE FROM\n" +
             "                lab3_book_table\n" +
@@ -94,6 +89,10 @@ public class BookDAOImpl implements BookDAO {
             "            WHERE\n" +
             "                id = ?";
 
+    @Autowired
+    public BookDAOImpl(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
     @Override
     public List<Book> getAll(BookDBFilter bookDBFilter) throws DAOException{
         List<Book> books = new ArrayList<>();

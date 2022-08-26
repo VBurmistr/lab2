@@ -21,15 +21,8 @@ import java.security.Principal;
 @Slf4j
 @Controller
 public class MainViewController {
-    ApplicationContext applicationContext;
-
-    @Autowired
-    public void setApplicationContext(ApplicationContext applicationContext) {
-        this.applicationContext = applicationContext;
-    }
-
     private final BookService bookService;
-   private final SmartAdderPropertyHolder propertyHolder;
+    private final SmartAdderPropertyHolder propertyHolder;
 
     @Autowired
     public MainViewController(BookService bookService,
@@ -39,66 +32,68 @@ public class MainViewController {
     }
 
     @GetMapping(path = "/searchbooks")
-    public String searchBooks(){
+    public String searchBooks() {
         return "searchBooks";
     }
 
     @GetMapping(path = "/addnewbook")
-    public String addNewBook(){
+    public String addNewBook() {
         return "addNewBook";
     }
 
     @GetMapping(path = "/editbook/{id}")
     public ModelAndView editBook(@PathVariable int id) throws ServiceException {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("book",bookService.getBookById(id));
+        modelAndView.addObject("book", bookService.getBookById(id));
         modelAndView.setViewName("editBook");
         return modelAndView;
     }
 
     @GetMapping(path = "/addauthor")
-    public String addAuthor(){
+    public String addAuthor() {
         return "addAuthor";
     }
 
     @GetMapping(path = "/addcategory")
-    public String addCategory(){
+    public String addCategory() {
         return "addCategory";
     }
 
     @GetMapping(path = "/addlanguage")
-    public String addLanguage(){
+    public String addLanguage() {
         return "addLanguage";
     }
 
     @GetMapping(path = "/addpublisher")
-    public String addPublisher(){
+    public String addPublisher() {
         return "addPublisher";
     }
 
     @GetMapping(path = "/manageauthors")
-    public String manageAuthors(){
+    public String manageAuthors() {
         return "manageAuthors";
     }
+
     @GetMapping(path = "/managecategorys")
-    public String manageCategorys(){
+    public String manageCategorys() {
         return "manageCategorys";
     }
+
     @GetMapping(path = "/managelanguages")
-    public String manageLanguages(){
+    public String manageLanguages() {
         return "manageLanguages";
     }
+
     @GetMapping(path = "/managepublishers")
-    public String managePublishers(){
+    public String managePublishers() {
         return "managePublishers";
     }
 
 
-
     @GetMapping(path = "/smartadder")
-    public ModelAndView addBookSmart(){
+    public ModelAndView addBookSmart() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("smartAdderProperty",propertyHolder);
+        modelAndView.addObject("smartAdderProperty", propertyHolder);
         modelAndView.setViewName("bookSmartAdder");
         return modelAndView;
     }

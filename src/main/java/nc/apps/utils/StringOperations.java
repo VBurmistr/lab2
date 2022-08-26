@@ -1,10 +1,8 @@
 package nc.apps.utils;
 
 public class StringOperations {
+    private StringOperations(){}
     public static boolean isNullOrEmpty(String s){
-        if(s==null||s.isEmpty()){
-            return true;
-        }
-        return false;
+        return s == null || s.isEmpty();
     }
 }

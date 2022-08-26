@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/book/")
 public class BookRestController {
     private final BookService bookService;
-
     @Autowired
     public BookRestController(BookService bookService) {
         this.bookService = bookService;

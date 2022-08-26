@@ -17,7 +17,6 @@ import java.util.List;
 @RequestMapping("/language/")
 public class LanguageRestController {
     private final LanguageService languageService;
-
     @Autowired
     public LanguageRestController(LanguageService languageService) {
         this.languageService = languageService;

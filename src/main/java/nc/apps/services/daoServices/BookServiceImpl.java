@@ -23,7 +23,7 @@ import java.util.List;
 @Service
 public class BookServiceImpl implements BookService {
     public static final int TABLE_ROW_LIMIT = 10;
-    BookDAO bookDAO;
+    private final BookDAO bookDAO;
     @Autowired
     public BookServiceImpl(BookDAO bookDAO) {
         this.bookDAO = bookDAO;

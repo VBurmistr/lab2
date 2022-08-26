@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 @Service
 public class PublisherServiceImpl implements PublisherService {
-    PublisherDAO publisherDAO;
+    private final PublisherDAO publisherDAO;
 
     @Autowired
     public PublisherServiceImpl(PublisherDAO publisherDAO) {

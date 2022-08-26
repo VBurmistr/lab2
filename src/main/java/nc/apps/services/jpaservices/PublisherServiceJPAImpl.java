@@ -21,11 +21,10 @@ import java.util.List;
 @Primary
 public class PublisherServiceJPAImpl implements PublisherService {
     private final PublisherRepository publisherRepository;
-
     public PublisherServiceJPAImpl(PublisherRepository publisherRepository) {
         this.publisherRepository = publisherRepository;
     }
-
+    @Override
     public void save(PublisherDTO publisher) throws ServiceException {
         try {
             publisherRepository.save(DTOToDomainMapper.mapPublisher(publisher));
@@ -33,7 +32,7 @@ public class PublisherServiceJPAImpl implements PublisherService {
             throw new ServiceException(e);
         }
     }
-
+    @Override
     public List<PublisherDTO> getAll() throws ServiceException {
         try {
             return DomainToDTOMapper.mapPublishers(publisherRepository.findAll());
