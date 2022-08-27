@@ -30,8 +30,18 @@
     <spring.security.version>5.7.2</spring.security.version>
     <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
     <org.postgresql.driver.version>42.4.0</org.postgresql.driver.version>
+    <swagger.version>3.0.0</swagger.version>
+
   </properties>
   <dependencies>
+    <!-- SWAGGER -->
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-ui</artifactId>
+      <version>1.6.11</version>
+    </dependency>
+    <!-- SWAGGER -->
+
     <dependency>
       <groupId>javax.annotation</groupId>
       <artifactId>javax.annotation-api</artifactId>
