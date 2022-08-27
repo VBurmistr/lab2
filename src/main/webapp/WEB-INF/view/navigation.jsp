@@ -23,8 +23,10 @@
     <a class="btn btn-primary" href="<%=request.getContextPath()%>/managecategorys">Manage category's</a>
     <a class="btn btn-primary" href="<%=request.getContextPath()%>/addpublisher">Add publisher</a>
     <a class="btn btn-primary" href="<%=request.getContextPath()%>/managepublishers">Manage publishers</a>
-    <a class="btn btn-primary" href="<%=request.getContextPath()%>/smartadder">Book Smart Adder</a>
+    <a class="btn btn-success" href="<%=request.getContextPath()%>/smartadder">Book Smart Adder</a>
+    <a class="btn btn-warning" href="<%=request.getContextPath()%>/swagger-ui.html">Swagger</a>
     <a class="btn btn-primary" href="<%=request.getContextPath()%>/logout">Logout</a>
+
 </div>
 </body>
 </html>
