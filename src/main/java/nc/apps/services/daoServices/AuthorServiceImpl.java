@@ -12,6 +12,7 @@ import nc.apps.services.interfaces.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 @Slf4j
@@ -22,7 +23,6 @@ public class AuthorServiceImpl implements AuthorService {
     public AuthorServiceImpl(AuthorDAO authorDAO) {
         this.authorDAO = authorDAO;
     }
-
     public void save(AuthorDTO author) throws ServiceException {
         try {
             authorDAO.save(DTOToDomainMapper.mapAuthor(author));
@@ -30,7 +30,6 @@ public class AuthorServiceImpl implements AuthorService {
             throw new ServiceException(e);
         }
     }
-
     public List<AuthorDTO> getAll() throws ServiceException {
         try {
             return DomainToDTOMapper.mapAuthors(authorDAO.getAll());
@@ -41,6 +40,10 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public void remove(int id) throws ServiceException {
-        throw new ServiceException("Unimplemented operation");
+        try {
+            authorDAO.remove(id);
+        }catch (DAOException e){
+            throw new ServiceException(e);
+        }
     }
 }

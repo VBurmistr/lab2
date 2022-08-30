@@ -1,13 +1,21 @@
 
 J
-java:S3740"/Provide the parametrized type for this generic.(½›‡èÿÿÿÿÿ
+java:S3740"/Provide the parametrized type for this generic.(½›‡èÿÿÿÿÿ
 E
-java:S3740"/Provide the parametrized type for this generic.(÷ªØÆ
+java:S3740 "/Provide the parametrized type for this generic.(÷ªØÆ
 E
-java:S3740"/Provide the parametrized type for this generic.(÷ªØÆ
-Q
-java:S3740*"/Provide the parametrized type for this generic.(ı‡¤Šøÿÿÿÿ8¼¤Àª¬0
-L
-java:S3740,"/Provide the parametrized type for this generic.(”Ï£è8ÏŒÂª¬0
-Q
-java:S1128"4Remove this unused import 'nc.apps.entities.Author'.(èã¯8’‘¾ª¬0
+java:S3740 "/Provide the parametrized type for this generic.(÷ªØÆ
+J
+java:S3740/"/Provide the parametrized type for this generic.(ı‡¤Šøÿÿÿÿ
+E
+java:S37401"/Provide the parametrized type for this generic.(”Ï£è
+J
+java:S1128"4Remove this unused import 'nc.apps.entities.Author'.(èã¯
+b
+java:S1128"GRemove this unused import 'org.springframework.jdbc.core.JdbcTemplate'.(å ê‹ÿÿÿÿÿ
+x
+java:S1128"]Remove this unused import 'org.springframework.jdbc.datasource.DataSourceTransactionManager'.(ˆµÍıÿÿÿÿ
+e
+java:S1128"ORemove this unused import 'org.springframework.transaction.TransactionManager'.(‚¸à«
+W
+java:S1128"<Remove this unused import 'javax.transaction.Transactional'.(ûÒçÑúÿÿÿÿ

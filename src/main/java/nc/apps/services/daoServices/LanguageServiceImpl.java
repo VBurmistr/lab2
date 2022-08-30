@@ -43,6 +43,10 @@ public class LanguageServiceImpl implements LanguageService {
 
     @Override
     public void remove(int id) throws ServiceException {
-        throw new ServiceException("Unimplemented operation");
+        try {
+            languageDAO.remove(id);
+        }catch (DAOException e){
+            throw new ServiceException(e);
+        }
     }
 }

@@ -43,6 +43,10 @@ public class PublisherServiceImpl implements PublisherService {
 
     @Override
     public void remove(int id) throws ServiceException {
-        throw new ServiceException("Unimplemented operation");
+        try {
+            publisherDAO.remove(id);
+        }catch (DAOException e){
+            throw new ServiceException(e);
+        }
     }
 }

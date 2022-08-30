@@ -22,6 +22,8 @@ public class LanguageDAOImpl implements LanguageDAO {
     private final DataSource dataSource;
     public static final String SQL_GET_ALL = "SELECT * FROM LAB3_LANGUAGE_TABLE";
     public static final String SQL_ADD_NEW = "INSERT INTO LAB3_LANGUAGE_TABLE (language) VALUES (?)";
+    public static final String SQL_REMOVE = "DELETE FROM lab3_language_table where id = ?";
+
     @Autowired
     public LanguageDAOImpl(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -59,6 +61,21 @@ public class LanguageDAOImpl implements LanguageDAO {
             }
         } catch (SQLException e) {
             throw new DAOException("Error while saving language:" + language, e);
+        }
+    }
+
+    @Override
+    public void remove(int id) throws DAOException {
+        log.info("Remove language query:"+SQL_REMOVE);
+        try(Connection con = dataSource.getConnection();
+            PreparedStatement statement = con.prepareStatement(SQL_REMOVE)){
+            statement.setInt(1,id);
+            int res = statement.executeUpdate();
+            if (res == 0) {
+                throw new DAOException("Cant remove language for some reason, language with id:"+id);
+            }
+        } catch (SQLException e) {
+            throw new DAOException("Error while removing language with id:"+id,e);
         }
     }
 }

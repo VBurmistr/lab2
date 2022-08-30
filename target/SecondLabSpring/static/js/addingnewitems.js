@@ -25,17 +25,18 @@ function sendAddSmartRequest(form){
         method : "POST",
         body: data,
         headers:{'Content-Type': 'application/x-www-form-urlencoded'}
-    }).then(
-        response => {
-            if(response.status===200){
+    }).then((response) =>
+        response.json()
+    ).then((jsonResp)=>{
+        if(jsonResp!==undefined){
+            if(jsonResp.success){
                 window.location.replace(getContextPath()+"/searchbooks");
             }else{
-                return response.json();
+                alert(jsonResp.responseBody.msg)
             }
+        }else{
         }
-    ).then(
-        json => alert(json['msg'])
-    );
+    })
 }
 
 function getContextPath() {

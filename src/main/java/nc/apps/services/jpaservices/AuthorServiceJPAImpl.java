@@ -21,9 +21,7 @@ import java.util.stream.Collectors;
 @Service
 @Primary
 public class AuthorServiceJPAImpl implements AuthorService {
-
     private final AuthorRepository authorRepository;
-
     @Autowired
     public AuthorServiceJPAImpl(AuthorRepository authorRepository) {
         this.authorRepository = authorRepository;

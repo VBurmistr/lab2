@@ -8,8 +8,12 @@ import nc.apps.services.interfaces.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.TransactionManager;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
@@ -20,6 +24,7 @@ public class AuthorRestController {
     public AuthorRestController(AuthorService authorService) {
         this.authorService = authorService;
     }
+
 
     @PostMapping(value = "/add/")
     public ResponseEntity addAuthor(@RequestBody AuthorDTO author) throws ServiceException {

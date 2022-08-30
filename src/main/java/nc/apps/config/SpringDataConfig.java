@@ -27,7 +27,6 @@ import java.util.Properties;
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = {"nc.apps.repositories"})
 public class SpringDataConfig {
-
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) throws IOException {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();

@@ -42,6 +42,10 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void remove(int id) throws ServiceException {
-        throw new ServiceException("Unimplemented operation");
+        try {
+            categoryDAO.remove(id);
+        }catch (DAOException e){
+            throw new ServiceException(e);
+        }
     }
 }

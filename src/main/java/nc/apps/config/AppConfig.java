@@ -8,6 +8,12 @@ import nc.apps.propertyholder.SmartAdderPropertyHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.transaction.TransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -20,12 +26,11 @@ import javax.sql.DataSource;
 @EnableAspectJAutoProxy
 @ComponentScan(value = "nc.apps")
 @PropertySource("classpath:application.properties")
+@EnableTransactionManagement
 @Slf4j
 public class AppConfig implements WebMvcConfigurer {
-
-
     @Bean
-    @Profile({"dev","default"})
+    @Profile({"dev","default","test"})
     @Primary
     SmartAdderPropertyHolder devSmartAdderPropertyHolder(@Value("${smartadder.dev.port}") String port,
                                                             @Value("${smartadder.domain}") String domain){
@@ -45,12 +50,6 @@ public class AppConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**")
                 .addResourceLocations("/static/");
-
-//        registry.addResourceHandler("swagger-ui.html")
-//                .addResourceLocations("classpath:/META-INF/resources/");
-//
-//        registry.addResourceHandler("/webjars/**")
-//                .addResourceLocations("classpath:/META-INF/resources/webjars/springfox-swagger-ui/");
     }
 
     @Bean
@@ -79,12 +78,28 @@ public class AppConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    @Profile("dev")
+    @Profile({"dev","default"})
     public DataSource dataSourceDevelop(@Value("${datasource.driver}") String driver,
-                                    @Value("${datasource.url}") String url,
+                                        @Value("${datasource.url}") String url,
+                                        @Value("${datasource.user}") String username,
+                                        @Value("${datasource.password}") String password) {
+        log.info("Initialized dataSourceDevelop bean.");
+        HikariDataSource ds = new HikariDataSource();
+        ds.setMaximumPoolSize(20);
+        ds.setDriverClassName(driver);
+        ds.setJdbcUrl(url);
+        ds.setUsername(username);
+        ds.setPassword(password);
+        return ds;
+    }
+
+    @Bean
+    @Profile("test")
+    public DataSource dataSourceTests(@Value("${datasource.driver}") String driver,
+                                    @Value("${datasource.url_tests}") String url,
                                     @Value("${datasource.user}") String username,
                                     @Value("${datasource.password}") String password) {
-        log.info("Initialized dataSourceDevelop bean.");
+        log.info("Initialized dataSourceTests bean.");
         HikariDataSource ds = new HikariDataSource();
         ds.setMaximumPoolSize(20);
         ds.setDriverClassName(driver);

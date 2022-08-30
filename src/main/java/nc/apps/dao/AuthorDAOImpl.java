@@ -7,6 +7,7 @@ import nc.apps.dao.interfaces.AuthorDAO;
 import nc.apps.entities.Author;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -21,6 +22,9 @@ import java.util.List;
 public class AuthorDAOImpl implements AuthorDAO {
     private final DataSource dataSource;
     public static final String SQL_GET_ALL = "SELECT * FROM LAB3_AUTHOR_TABLE";
+
+    public static final String SQL_REMOVE = "DELETE FROM lab3_author_table where id = ?";
+
     public static final String SQL_ADD_NEW = "INSERT INTO LAB3_AUTHOR_TABLE (first_name,last_name) VALUES (?,?)";
     @Autowired
     public AuthorDAOImpl(DataSource dataSource) {
@@ -58,6 +62,21 @@ public class AuthorDAOImpl implements AuthorDAO {
             }
         } catch (SQLException e) {
             throw new DAOException("Error while saving author:"+author,e);
+        }
+    }
+
+    @Override
+    public void remove(int id) throws DAOException {
+        log.info("Remove author query:"+SQL_REMOVE);
+        try(Connection con = dataSource.getConnection();
+            PreparedStatement statement = con.prepareStatement(SQL_REMOVE)){
+            statement.setInt(1,id);
+            int res = statement.executeUpdate();
+            if (res == 0) {
+                throw new DAOException("Cant remove author for some reason, author with id:"+id);
+            }
+        } catch (SQLException e) {
+            throw new DAOException("Error while removing author with id:"+id,e);
         }
     }
 }
