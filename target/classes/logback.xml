@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+    <include resource=
+                     "org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource=
+                     "org/springframework/boot/logging/logback/file-appender.xml" />
+
     <statusListener class="ch.qos.logback.core.status.NopStatusListener"/>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -47,7 +52,14 @@
 
     </logger>
 
-    <root level="INFO">
+
+    <logger name="liquibase" level="info">
+        <appender-ref ref="RollingFile"/>
         <appender-ref ref="STDOUT" />
+    </logger>
+
+
+    <root level="error">
+        <appender-ref ref="STDOUT"/>
     </root>
 </configuration>

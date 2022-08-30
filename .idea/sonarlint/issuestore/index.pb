@@ -39,8 +39,6 @@ c
 3src/main/java/nc/apps/dao/BookBaseModelDAOImpl.java,a\f\afd24a831f36af377173ea4686162fa1d9d622b8
 Z
 *src/main/java/nc/apps/dao/BookDAOImpl.java,1\a\1ad771dc429e951fb918b1844e70336d6ed739af
-f
-6src/main/java/nc/apps/dbinitializer/DBInitializer.java,f\7\f7a2f9e91056639d7339c6096468eb07b77d1d38
 i
 9src/main/java/nc/apps/dto/tabledtos/BookBaseModelDTO.java,d\4\d4734bb7df918b3ea5db1732765f2586ed991473
 d
@@ -105,10 +103,6 @@ o
 ?src/main/java/nc/apps/services/interfaces/PublisherService.java,9\7\9737f073f4471a6fd87001b98417f5596cf40275
 [
 +src/main/webapp/WEB-INF/view/navigation.jsp,1\9\19d309bba50187d43333eaab2f7f0df632e324a8
-e
-5src/main/java/nc/apps/config/SwaggerCustomConfig.java,1\9\198487af4033cdf547199439edf961a48e652221
-`
-0src/main/java/nc/apps/config/SecurityConfig.java,e\0\e0140b71f7eff94805ba20ad8226327f0a5e3650
 o
 ?src/main/java/nc/apps/restcontrollers/AuthorRestController.java,b\7\b7206dd768e49b8c4c4cdfc9365fa4c89b8e39d8
 b
@@ -163,12 +157,6 @@ o
 ?src/main/java/nc/apps/services/daoServices/BookServiceImpl.java,8\0\808ea83460ee4ab0fd38f2c32ae0a80e5a4aaad6
 `
 0src/main/java/nc/apps/dto/tabledtos/BookDTO.java,6\1\6189dc6014b110a8d5e6f90aad61efe3c001989b
-b
-2src/main/java/nc/apps/config/SpringDataConfig.java,d\2\d2997592644edfe5bc065fb4703af483d185df5f
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-[
-+src/main/java/nc/apps/config/AppConfig.java,a\9\a972f4fd707130159e5010be841694b9be7ffd92
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
@@ -178,14 +166,6 @@ Esrc/test/java/nc/apps/services/daoServices/AuthorServiceImplTest.java,b\8\b8bc
 ,src/main/java/nc/apps/dao/AuthorDAOImpl.java,b\1\b144b71f2c3d62862a90115af4c7a84d8e17e3cc
 {
 Ksrc/main/java/nc/apps/services/jpaservices/BookBaseModelServiceJPAImpl.java,d\4\d439c373a091893d5392125f5f1025f2d0400168
-x
-Hsrc/test/java/nc/apps/services/jpaservices/AuthorServiceJPAImplTest.java,c\1\c12356a70ee14ad64529a669a5fbab148fdd0492
-z
-Jsrc/test/java/nc/apps/services/jpaservices/CategoryServiceJPAImplTest.java,5\9\596bc456b9ffd333e6586f961b687a51b8c31e65
-z
-Jsrc/test/java/nc/apps/services/jpaservices/LanguageServiceJPAImplTest.java,6\b\6b109ea2669435a230c6a6675ffa70471de83446
-{
-Ksrc/test/java/nc/apps/services/jpaservices/PublisherServiceJPAImplTest.java,3\4\34a9a9e856b31d915b3603e9c74cd90e84eafa39
 r
 Bsrc/main/java/nc/apps/services/jpaservices/BookJPAServiceImpl.java,9\7\9706d0b49e3cc45534d854d9f2b4846fabd2198d
 ]
@@ -200,3 +180,11 @@ Z
 +src/main/webapp/static/js/addingnewitems.js,c\b\cb00e0967d6d83d77c2d277127355bc516fb07b5
 [
 +src/main/webapp/static/js/bookProcessing.js,7\f\7f236aadefef23d1b80ee79a5dad8e259010f59a
+x
+Hsrc/test/java/nc/apps/services/jpaservices/AuthorServiceJPAImplTest.java,c\1\c12356a70ee14ad64529a669a5fbab148fdd0492
+z
+Jsrc/test/java/nc/apps/services/jpaservices/CategoryServiceJPAImplTest.java,5\9\596bc456b9ffd333e6586f961b687a51b8c31e65
+z
+Jsrc/test/java/nc/apps/services/jpaservices/LanguageServiceJPAImplTest.java,6\b\6b109ea2669435a230c6a6675ffa70471de83446
+{
+Ksrc/test/java/nc/apps/services/jpaservices/PublisherServiceJPAImplTest.java,3\4\34a9a9e856b31d915b3603e9c74cd90e84eafa39
