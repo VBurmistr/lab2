@@ -1,13 +1,11 @@
 package nc.apps.dao;
 
 import lombok.extern.slf4j.Slf4j;
-import nc.apps.connectionmanager.interfaces.ConnectionManager;
 import nc.apps.dao.exception.DAOException;
 import nc.apps.dao.interfaces.AuthorDAO;
-import nc.apps.entities.Author;
+import nc.apps.entities.domain.Author;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.sql.Connection;

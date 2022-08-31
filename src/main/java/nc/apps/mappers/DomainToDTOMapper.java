@@ -1,7 +1,7 @@
 package nc.apps.mappers;
 
 import nc.apps.dto.tabledtos.*;
-import nc.apps.entities.*;
+import nc.apps.entities.domain.*;
 import org.springframework.data.domain.Page;
 
 import java.util.List;

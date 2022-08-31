@@ -1,7 +1,6 @@
 package nc.apps.services.interfaces;
 
 import nc.apps.dto.tabledtos.LanguageDTO;
-import nc.apps.entities.Language;
 import nc.apps.services.exceptions.ServiceException;
 
 import java.util.List;

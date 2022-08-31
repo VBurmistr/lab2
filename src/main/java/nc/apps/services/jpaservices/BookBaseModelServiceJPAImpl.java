@@ -1,13 +1,9 @@
 package nc.apps.services.jpaservices;
 
 import lombok.extern.slf4j.Slf4j;
-import nc.apps.dao.exception.DAOException;
-import nc.apps.dao.interfaces.BookBaseModelDAO;
 import nc.apps.dto.tabledtos.BookBaseModelDTO;
-import nc.apps.entities.Book;
-import nc.apps.entities.BookBaseModel;
+import nc.apps.entities.domain.BookBaseModel;
 import nc.apps.mappers.DomainToDTOMapper;
-import nc.apps.repositories.BookBaseModelRepository;
 import nc.apps.repositories.BookRepository;
 import nc.apps.services.exceptions.ServiceException;
 import nc.apps.services.interfaces.BookBaseModelService;

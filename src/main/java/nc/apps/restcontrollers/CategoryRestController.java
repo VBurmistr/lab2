@@ -1,10 +1,7 @@
 package nc.apps.restcontrollers;
 
 import nc.apps.dto.ResponseObject;
-import nc.apps.dto.tabledtos.AuthorDTO;
 import nc.apps.dto.tabledtos.CategoryDTO;
-import nc.apps.entities.Author;
-import nc.apps.entities.Category;
 import nc.apps.services.exceptions.ServiceException;
 import nc.apps.services.interfaces.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;

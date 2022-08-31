@@ -7,15 +7,30 @@ import nc.apps.dto.ResponseObject;
 import nc.apps.services.exceptions.ServiceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.ui.Model;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Slf4j
 @ControllerAdvice
 public class ExceptionHandlerController {
+
+
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseBody
+    public ResponseObject<ErrorObject> handleSecurityError(HttpServletRequest req, HttpServletResponse resp, Exception ex) {
+        log.error("Security Error:",ex);
+        return new ResponseObject<>(false,
+                new ErrorObject(resp.getStatus(),
+                        ex.getMessage(),
+                        System.currentTimeMillis()));
+    }
 
     @ExceptionHandler
     public String handleError(Model model, HttpServletRequest req, Exception ex) {

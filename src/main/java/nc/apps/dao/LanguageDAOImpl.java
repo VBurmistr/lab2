@@ -3,9 +3,8 @@ package nc.apps.dao;
 import lombok.extern.slf4j.Slf4j;
 import nc.apps.dao.exception.DAOException;
 import nc.apps.dao.interfaces.LanguageDAO;
-import nc.apps.entities.Language;
+import nc.apps.entities.domain.Language;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;

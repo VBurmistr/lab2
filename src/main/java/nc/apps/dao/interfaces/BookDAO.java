@@ -2,7 +2,7 @@ package nc.apps.dao.interfaces;
 
 import nc.apps.dao.exception.DAOException;
 import nc.apps.dto.BookDBFilter;
-import nc.apps.entities.Book;
+import nc.apps.entities.domain.Book;
 
 import java.util.List;
 

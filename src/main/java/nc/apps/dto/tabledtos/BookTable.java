@@ -2,7 +2,6 @@ package nc.apps.dto.tabledtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import nc.apps.entities.Book;
 
 import java.util.List;
 

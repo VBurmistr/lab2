@@ -1,19 +1,10 @@
 package nc.apps.mappers;
 
-import nc.apps.dto.BookDBFilter;
-import nc.apps.dto.Ordering;
-import nc.apps.dto.OrderingBy;
 import nc.apps.dto.SearchFiltersFromForm;
-import nc.apps.entities.Book;
-import nc.apps.repositories.BookRepository;
+import nc.apps.entities.domain.Book;
 import nc.apps.springdataspecifications.BookSpecifications;
 import nc.apps.utils.StringOperations;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.stereotype.Repository;
-
-import java.util.Optional;
-
-import static org.springframework.data.jpa.domain.Specification.where;
 
 public class SpringDataSpecificationMapper {
     public static Specification<Book> mapSpecs(SearchFiltersFromForm filtersFromForm) {

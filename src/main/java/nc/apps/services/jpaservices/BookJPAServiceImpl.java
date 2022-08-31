@@ -1,12 +1,11 @@
 package nc.apps.services.jpaservices;
 
 import lombok.extern.slf4j.Slf4j;
-import nc.apps.dto.BookDBFilter;
 import nc.apps.dto.BookIDsDTO;
 import nc.apps.dto.tabledtos.BookTable;
 import nc.apps.dto.SearchFiltersFromForm;
 import nc.apps.dto.tabledtos.BookDTO;
-import nc.apps.entities.Book;
+import nc.apps.entities.domain.Book;
 import nc.apps.mappers.*;
 import nc.apps.repositories.BookRepository;
 import nc.apps.services.exceptions.ServiceException;

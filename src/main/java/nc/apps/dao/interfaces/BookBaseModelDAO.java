@@ -1,7 +1,7 @@
 package nc.apps.dao.interfaces;
 
 import nc.apps.dao.exception.DAOException;
-import nc.apps.entities.BookBaseModel;
+import nc.apps.entities.domain.BookBaseModel;
 
 import java.util.List;
 
