@@ -1,8 +1,8 @@
 package nc.apps.mappers;
 
 import lombok.extern.slf4j.Slf4j;
-import nc.apps.dto.Ordering;
-import nc.apps.dto.OrderingBy;
+import nc.apps.entities.Ordering;
+import nc.apps.entities.OrderingBy;
 import nc.apps.dto.SearchFiltersFromForm;
 import nc.apps.utils.StringOperations;
 import org.springframework.data.domain.Sort;

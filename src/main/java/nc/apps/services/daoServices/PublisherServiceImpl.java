@@ -8,9 +8,7 @@ import nc.apps.mappers.DTOToDomainMapper;
 import nc.apps.mappers.DomainToDTOMapper;
 import nc.apps.services.exceptions.ServiceException;
 import nc.apps.services.interfaces.PublisherService;
-import nc.apps.entities.Publisher;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

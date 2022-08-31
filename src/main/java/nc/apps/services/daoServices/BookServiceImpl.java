@@ -8,14 +8,13 @@ import nc.apps.dto.BookIDsDTO;
 import nc.apps.dto.tabledtos.BookDTO;
 import nc.apps.dto.tabledtos.BookTable;
 import nc.apps.dto.SearchFiltersFromForm;
-import nc.apps.entities.Book;
+import nc.apps.entities.domain.Book;
 import nc.apps.mappers.DTOToDomainMapper;
 import nc.apps.mappers.DomainToDTOMapper;
 import nc.apps.mappers.SearchFilterToBookFilterMapping;
 import nc.apps.services.exceptions.ServiceException;
 import nc.apps.services.interfaces.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -7,9 +7,7 @@ import nc.apps.dto.tabledtos.BookBaseModelDTO;
 import nc.apps.mappers.DomainToDTOMapper;
 import nc.apps.services.exceptions.ServiceException;
 import nc.apps.services.interfaces.BookBaseModelService;
-import nc.apps.entities.BookBaseModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

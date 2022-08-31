@@ -4,7 +4,6 @@ package nc.apps.dto.tabledtos;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import nc.apps.entities.Publisher;
 
 @Getter
 @Setter

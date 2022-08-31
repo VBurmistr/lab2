@@ -3,6 +3,8 @@ package nc.apps.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import nc.apps.entities.Ordering;
+import nc.apps.entities.OrderingBy;
 
 @Data
 @NoArgsConstructor

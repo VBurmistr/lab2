@@ -5,8 +5,6 @@ import nc.apps.config.SecurityConfig;
 import nc.apps.config.SpringDataConfig;
 import nc.apps.config.SwaggerCustomConfig;
 import nc.apps.dto.tabledtos.AuthorDTO;
-import nc.apps.entities.Author;
-import nc.apps.repositories.AuthorRepository;
 import nc.apps.services.exceptions.ServiceException;
 import nc.apps.services.interfaces.AuthorService;
 import org.junit.jupiter.api.Test;
@@ -20,7 +18,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import javax.transaction.Transactional;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 

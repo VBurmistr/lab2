@@ -2,18 +2,13 @@ package nc.apps.restcontrollers;
 
 import nc.apps.dto.ResponseObject;
 import nc.apps.dto.tabledtos.AuthorDTO;
-import nc.apps.entities.Author;
 import nc.apps.services.exceptions.ServiceException;
 import nc.apps.services.interfaces.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.transaction.TransactionManager;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController

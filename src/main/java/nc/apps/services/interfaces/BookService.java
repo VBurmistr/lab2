@@ -5,7 +5,6 @@ import nc.apps.dto.tabledtos.BookDTO;
 import nc.apps.dto.tabledtos.BookTable;
 import nc.apps.dto.SearchFiltersFromForm;
 import nc.apps.services.exceptions.ServiceException;
-import nc.apps.entities.Book;
 
 public interface BookService {
     BookDTO getBookById(int id) throws ServiceException;

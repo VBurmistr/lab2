@@ -1,6 +1,6 @@
 package nc.apps.springdataspecifications;
 
-import nc.apps.entities.Book;
+import nc.apps.entities.domain.Book;
 import org.springframework.data.jpa.domain.Specification;
 
 public class BookSpecifications {

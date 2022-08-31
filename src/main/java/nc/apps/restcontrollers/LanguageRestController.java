@@ -2,8 +2,6 @@ package nc.apps.restcontrollers;
 
 import nc.apps.dto.ResponseObject;
 import nc.apps.dto.tabledtos.LanguageDTO;
-import nc.apps.entities.Category;
-import nc.apps.entities.Language;
 import nc.apps.services.exceptions.ServiceException;
 import nc.apps.services.interfaces.LanguageService;
 import org.springframework.beans.factory.annotation.Autowired;

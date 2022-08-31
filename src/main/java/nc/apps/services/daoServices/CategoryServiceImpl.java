@@ -4,13 +4,11 @@ import lombok.extern.slf4j.Slf4j;
 import nc.apps.dao.exception.DAOException;
 import nc.apps.dao.interfaces.CategoryDAO;
 import nc.apps.dto.tabledtos.CategoryDTO;
-import nc.apps.entities.Category;
 import nc.apps.mappers.DTOToDomainMapper;
 import nc.apps.mappers.DomainToDTOMapper;
 import nc.apps.services.exceptions.ServiceException;
 import nc.apps.services.interfaces.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
