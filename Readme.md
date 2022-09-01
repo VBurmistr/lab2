@@ -36,3 +36,14 @@ Just click on "package.bat" (works only with installed maven on pc, and settled 
    1) Model - have info from service.
    2) View some template or static file.
    3) Controller layer that controls Data Transfer between business logic, Model and View.
+
+
+# New Features
+1) Added swagger lib(documentation, testing etc.)
+2) Added Spring Data JPA(repository layer) as optional feature for DB managing.
+3) Changed hardcoded version of Spring Security to "hardcoded" version of Spring Security with DB.
+4) Added Liquibase (GIT for Databases), and tested tags by creating new Table for Spring Security.
+5) Removed ALL domain objects from controllers and switched to DTO, same for service's return values.
+6) Added HikariConnectionPool as main connection pool.
+7) Added Dockerfile and compose. 
+8) Service creating beans depending on what environment booting that service(env. variable).

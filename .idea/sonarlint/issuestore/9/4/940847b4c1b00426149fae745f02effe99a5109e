@@ -1,6 +1,0 @@
-
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(›§ä
-R
-java:S1128"6Remove this unused import 'nc.apps.entities.Category'.(Ã¬‹8ı‡ıÈ®0
-h
-java:S1128"KRemove this unused import 'org.springframework.context.annotation.Primary'.(“ğ›ß8ˆıÈ®0
