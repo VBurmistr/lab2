@@ -19,7 +19,7 @@
 <jsp:include page="navigation.jsp" />
 <div class="nav justify-content-center">
   <form method="post"
-        action="<c:out value="http://${smartAdderProperty.domain}:${smartAdderProperty.port}/smart-adder-service/book/addsmart"/>">
+        action="<c:out value="${pageContext.request.contextPath}/book/addsmart/"/>">
     <div class="input-group mb-3">
       <span class="input-group-text">Set title:</span>
       <input type="text" name="title" class="form-control" >

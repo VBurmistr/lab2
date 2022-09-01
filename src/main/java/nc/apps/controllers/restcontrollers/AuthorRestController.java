@@ -1,4 +1,4 @@
-package nc.apps.restcontrollers;
+package nc.apps.controllers.restcontrollers;
 
 import nc.apps.dto.ResponseObject;
 import nc.apps.dto.tabledtos.AuthorDTO;

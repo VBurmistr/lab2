@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/*/update/**",
                         "/*/remove/**",
-                        "/*/add/").hasAuthority(Permission.WRITE.name())
+                        "/*/add/","/*/addsmart/").hasAuthority(Permission.WRITE.name())
                 .anyRequest()
                 .authenticated().and()
                 .formLogin().and()

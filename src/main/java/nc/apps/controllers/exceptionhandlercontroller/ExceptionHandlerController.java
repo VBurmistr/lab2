@@ -1,4 +1,4 @@
-package nc.apps.controllers;
+package nc.apps.controllers.exceptionhandlercontroller;
 
 import lombok.extern.slf4j.Slf4j;
 import nc.apps.dao.exception.DAOException;
@@ -20,8 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 @ControllerAdvice
 public class ExceptionHandlerController {
-
-
     @ExceptionHandler(AccessDeniedException.class)
     @ResponseBody
     public ResponseObject<ErrorObject> handleSecurityError(HttpServletRequest req, HttpServletResponse resp, Exception ex) {

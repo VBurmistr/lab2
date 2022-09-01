@@ -33,18 +33,20 @@ public class AppConfig implements WebMvcConfigurer {
     @Bean
     @Profile({"dev","default","test"})
     @Primary
-    SmartAdderPropertyHolder devSmartAdderPropertyHolder(@Value("${smartadder.dev.port}") String port,
-                                                            @Value("${smartadder.domain}") String domain){
+    SmartAdderPropertyHolder devSmartAdderPropertyHolder(@Value("${smartadder.port.dev}") String port,
+                                                            @Value("${smartadder.domain.dev}") String domain,
+                                                         @Value("${smartadder.context}") String context){
         log.info("Initialized devSmartAdderPropertyHolder bean.");
-        return new SmartAdderPropertyHolder(domain,port);
+        return new SmartAdderPropertyHolder(domain,port,context );
     }
 
     @Bean
     @Profile("docker")
-    SmartAdderPropertyHolder dockerSmartAdderPropertyHolder(@Value("${smartadder.docker.port}") String port,
-                                                               @Value("${smartadder.domain}") String domain){
+    SmartAdderPropertyHolder dockerSmartAdderPropertyHolder(@Value("${smartadder.port.docker}") String port,
+                                                               @Value("${smartadder.domain.docker}") String domain,
+                                                            @Value("${smartadder.context}") String context){
         log.info("Initialized dockerSmartAdderPropertyHolder bean.");
-        return new SmartAdderPropertyHolder(domain,port);
+        return new SmartAdderPropertyHolder(domain,port,context);
     }
 
     @Override

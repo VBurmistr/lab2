@@ -1,4 +1,4 @@
-package nc.apps.controllers;
+package nc.apps.controllers.mvccontrollers;
 
 import lombok.extern.slf4j.Slf4j;
 import nc.apps.propertyholder.SmartAdderPropertyHolder;
