@@ -28,7 +28,6 @@ public final class ConnectionManagerDriver implements ConnectionManager {
         this.password = password;
         this.username = username;
         this.url = url;
-
     }
     public Connection getConnection(){
         try {

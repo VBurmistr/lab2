@@ -19,7 +19,7 @@
         </encoder>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>../logs/springMVCMaven-%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <fileNamePattern>../logs/springMVCBookShelf-%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
             <maxFileSize>1MB</maxFileSize>
             <maxHistory>30</maxHistory>
             <totalSizeCap>10MB</totalSizeCap>
@@ -28,36 +28,32 @@
     </appender>
 
 
-    <logger name="nc.apps.aop" level="debug" additivity="true">
+    <logger name="nc.apps.aop" level="debug" additivity="false">
+        <appender-ref ref="RollingFile"/>
+    </logger>
+
+    <logger name="nc.apps.dao" level="debug" additivity="false">
         <appender-ref ref="RollingFile"/>
         <appender-ref ref="STDOUT" />
 
     </logger>
 
-    <logger name="nc.apps.dao" level="debug" additivity="true">
+    <logger name="nc.apps.services" level="debug" additivity="false">
         <appender-ref ref="RollingFile"/>
         <appender-ref ref="STDOUT" />
 
     </logger>
 
-    <logger name="nc.apps.services" level="debug" additivity="true">
+    <logger name="nc.apps.controllers" level="debug" additivity="false">
         <appender-ref ref="RollingFile"/>
         <appender-ref ref="STDOUT" />
 
     </logger>
 
-    <logger name="nc.apps.controllers" level="debug" additivity="true">
-        <appender-ref ref="RollingFile"/>
-        <appender-ref ref="STDOUT" />
-
-    </logger>
-
-
-    <logger name="liquibase" level="info">
+    <logger name="liquibase" level="info" additivity="false">
         <appender-ref ref="RollingFile"/>
         <appender-ref ref="STDOUT" />
     </logger>
-
 
     <root level="error">
         <appender-ref ref="STDOUT"/>

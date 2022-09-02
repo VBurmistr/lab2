@@ -1,5 +1,6 @@
 package nc.apps.controllers.exceptionhandlercontroller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import nc.apps.dao.exception.DAOException;
 import nc.apps.dto.ErrorObject;
@@ -13,6 +14,7 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.HttpServerErrorException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,6 +30,23 @@ public class ExceptionHandlerController {
                 new ErrorObject(resp.getStatus(),
                         ex.getMessage(),
                         System.currentTimeMillis()));
+    }
+
+    @ExceptionHandler(HttpServerErrorException.class)
+    @ResponseBody
+    public ResponseEntity<ResponseObject<ErrorObject>> handleSmartAdderException(HttpServletRequest req, HttpServletResponse resp, HttpServerErrorException ex) {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ResponseObject<ErrorObject> responseObject = null;
+        try {
+            responseObject = objectMapper.readValue(ex.getResponseBodyAsString(), ResponseObject.class);
+        } catch (Exception jsonEx) {
+            responseObject = new ResponseObject<ErrorObject>(false,
+                    new ErrorObject(500,
+                            "Something wrong",
+                            System.currentTimeMillis()));
+        }
+        return new ResponseEntity<>(responseObject,HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler

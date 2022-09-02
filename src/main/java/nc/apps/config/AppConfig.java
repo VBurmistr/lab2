@@ -96,19 +96,19 @@ public class AppConfig implements WebMvcConfigurer {
         return ds;
     }
 
-//    @Bean
-//    @Profile("test")
-//    public DataSource dataSourceTests(@Value("${datasource.driver}") String driver,
-//                                    @Value("${datasource.url_tests}") String url,
-//                                    @Value("${datasource.user}") String username,
-//                                    @Value("${datasource.password}") String password) {
-//        log.info("Initialized dataSourceTests bean.");
-//        HikariDataSource ds = new HikariDataSource();
-//        ds.setMaximumPoolSize(20);
-//        ds.setDriverClassName(driver);
-//        ds.setJdbcUrl(url);
-//        ds.setUsername(username);
-//        ds.setPassword(password);
-//        return ds;
-//    }
+    @Bean
+    @Profile("test")
+    public DataSource dataSourceTests(@Value("${datasource.driver}") String driver,
+                                    @Value("${datasource.url_tests}") String url,
+                                    @Value("${datasource.user}") String username,
+                                    @Value("${datasource.password}") String password) {
+        log.info("Initialized dataSourceTests bean.");
+        HikariDataSource ds = new HikariDataSource();
+        ds.setMaximumPoolSize(20);
+        ds.setDriverClassName(driver);
+        ds.setJdbcUrl(url);
+        ds.setUsername(username);
+        ds.setPassword(password);
+        return ds;
+    }
 }
