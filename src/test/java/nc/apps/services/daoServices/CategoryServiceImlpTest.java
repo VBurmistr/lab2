@@ -25,20 +25,23 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.sql.DataSource;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith({SpringExtension.class})
-@ActiveProfiles("dev")
+@ActiveProfiles("test")
 @WebAppConfiguration
 @ContextConfiguration(classes = {AppConfig.class, SpringDataConfig.class, SecurityConfig.class, SwaggerCustomConfig.class})
 @Rollback
 @Transactional
-
 class CategoryServiceImlpTest {
     @Autowired
     @Qualifier("categoryServiceImpl")
     CategoryService categoryService;
 
+    @Autowired
+    DataSource dataSource;
     @Test
     void testAllFunctional() throws ServiceException {
         categoryService.save(CategoryDTO.builder()

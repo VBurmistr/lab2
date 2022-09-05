@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith({SpringExtension.class})
-@ActiveProfiles("dev")
+@ActiveProfiles("test")
 @WebAppConfiguration
 @ContextConfiguration(classes = {AppConfig.class, SpringDataConfig.class, SecurityConfig.class, SwaggerCustomConfig.class})
 @Rollback

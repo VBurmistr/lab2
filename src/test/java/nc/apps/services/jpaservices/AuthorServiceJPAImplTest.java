@@ -22,7 +22,7 @@ import javax.transaction.Transactional;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith({SpringExtension.class})
-@ActiveProfiles("dev")
+@ActiveProfiles("test")
 @WebAppConfiguration
 @ContextConfiguration(classes = {AppConfig.class, SpringDataConfig.class, SecurityConfig.class, SwaggerCustomConfig.class})
 @Transactional
